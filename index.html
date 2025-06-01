@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Help Desk</title>
+    <title>Asya Pasipiko Kolehiyo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="bg-gradient-to-br from-blue-50 to-indigo-50">
+<body class="bg-gradient-to-br from-blue-50 to-indigo-50"> 
     <!-- Navigation -->
     <nav class="bg-white/80 backdrop-blur-md shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
                     <i class="fas fa-graduation-cap text-2xl text-blue-600 mr-2"></i>
-                    <h1 class="text-xl sm:text-2xl font-bold text-blue-600">Student Help Desk</h1>
+                    <h1 class="text-xl sm:text-2xl font-bold text-blue-600">Asya Pasipiko Kolehiyo</h1>
                 </div>
                 <!-- Mobile menu button -->
                 <div class="flex items-center sm:hidden">
@@ -25,12 +25,10 @@
                 </div>
                 <!-- Desktop menu -->
                 <div class="hidden sm:flex items-center space-x-6">
-                    <a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Home</a>
-                    <a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Services</a>
-                    <a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">Contact</a>
-                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                        Sign In
-                    </button>
+                    <a href="https://www.apc.edu.ph/" class="text-gray-600 hover:text-blue-600 transition-colors">HOME</a>
+                    <a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">ABOUT US</a>
+                    <a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">SERVICES</a>
+                    <a href="https://www.apc.edu.ph/calendar/" class="text-gray-600 hover:text-blue-600 transition-colors">CALENDAR</a>
                 </div>
             </div>
             <!-- Mobile menu -->
@@ -189,6 +187,36 @@
         </div>
     </footer>
 
+    <!-- AI Chatbot Widget -->
+    <div class="chat-widget">
+        <div class="chat-window" id="chatWindow">
+            <iframe src="https://copilotstudio.microsoft.com/environments/Default-aeb745e6-8166-4f8f-9233-179e8109c49e/bots/crd3e_websiteQADLTInB/webchat?__version__=2" 
+                    class="chat-iframe" 
+                    frameborder="0">
+            </iframe>
+        </div>
+        <div class="chat-button" id="chatButton" onclick="toggleChat()">
+            <i class="fas fa-comments text-2xl"></i>
+        </div>
+    </div>
+
     <script src="js/main.js"></script>
+    <script>
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            chatWindow.classList.toggle('active');
+        }
+
+        <!-- Open links in new tab -->
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent default navigation
+                    window.open(this.href, '_blank'); // Open in new tab
+                });
+            });
+        });
+        
+    </script>
 </body>
 </html> 

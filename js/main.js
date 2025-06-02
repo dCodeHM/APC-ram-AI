@@ -272,35 +272,33 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Carousel functionality - Improved for side-by-side layout
+// Carousel functionality - jQuery implementation without hover
 let currentSlide = 0;
 let isTransitioning = false;
 
 function initializeCarousel() {
-    const carousel = document.getElementById('carousel');
-    const carouselCards = document.querySelectorAll('.carousel-card');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const indicators = document.querySelectorAll('.carousel-indicator');
-    const totalCards = carouselCards.length;
+    const $carousel = $('#carousel');
+    const $carouselCards = $('.carousel-card');
+    const $prevBtn = $('#prevBtn');
+    const $nextBtn = $('#nextBtn');
+    const $indicators = $('.carousel-indicator');
+    const totalCards = $carouselCards.length;
 
-    if (!carousel || totalCards === 0) {
+    if (!$carousel.length || totalCards === 0) {
         console.log('Carousel elements not found');
         return;
     }
 
-    console.log('Initializing carousel with', totalCards, 'cards');
+    console.log('Initializing jQuery carousel with', totalCards, 'cards');
 
-    // Update carousel display with proper positioning
+    // Update carousel display
     function updateCarousel() {
         if (isTransitioning) return;
         isTransitioning = true;
 
-        carouselCards.forEach((card, index) => {
-            const cardIndex = parseInt(card.getAttribute('data-index'));
-            
-            // Remove all position classes
-            card.classList.remove('active', 'left', 'right', 'hidden');
+        $carouselCards.each(function(index) {
+            const $card = $(this);
+            const cardIndex = parseInt($card.attr('data-index'));
             
             // Calculate position relative to current slide
             let position = cardIndex - currentSlide;
@@ -309,95 +307,141 @@ function initializeCarousel() {
             if (position > 1) position -= totalCards;
             if (position < -1) position += totalCards;
             
-            // Apply appropriate class based on position
+            // Remove all position classes
+            $card.removeClass('carousel-active carousel-left carousel-right carousel-hidden');
+            
+            // Apply position and styling based on position
             if (position === 0) {
-                card.classList.add('active');
+                // Center card (active)
+                $card.addClass('carousel-active');
+                $card.css({
+                    'transform': 'translate(-50%, -50%) translateX(0) scale(1)',
+                    'opacity': '1',
+                    'z-index': '30',
+                    'filter': 'brightness(1)',
+                    'pointer-events': 'auto',
+                    'cursor': 'default'
+                });
             } else if (position === -1) {
-                card.classList.add('left');
+                // Left card
+                $card.addClass('carousel-left');
+                $card.css({
+                    'transform': 'translate(-50%, -50%) translateX(-400px) scale(0.8)',
+                    'opacity': '0.6',
+                    'z-index': '20',
+                    'filter': 'brightness(0.9)',
+                    'pointer-events': 'auto',
+                    'cursor': 'pointer'
+                });
             } else if (position === 1) {
-                card.classList.add('right');
+                // Right card
+                $card.addClass('carousel-right');
+                $card.css({
+                    'transform': 'translate(-50%, -50%) translateX(400px) scale(0.8)',
+                    'opacity': '0.6',
+                    'z-index': '20',
+                    'filter': 'brightness(0.9)',
+                    'pointer-events': 'auto',
+                    'cursor': 'pointer'
+                });
             } else {
-                card.classList.add('hidden');
+                // Hidden card
+                $card.addClass('carousel-hidden');
+                $card.css({
+                    'transform': 'translate(-50%, -50%) translateX(0) scale(0.6)',
+                    'opacity': '0',
+                    'z-index': '10',
+                    'filter': 'brightness(0.7)',
+                    'pointer-events': 'none',
+                    'cursor': 'default'
+                });
             }
         });
 
         // Update indicators
-        indicators.forEach((indicator, index) => {
-            indicator.classList.remove('active');
+        $indicators.each(function(index) {
+            const $indicator = $(this);
+            $indicator.removeClass('bg-blue-600 bg-blue-200');
+            
             if (index === currentSlide) {
-                indicator.classList.add('active');
+                $indicator.addClass('bg-blue-600');
+                $indicator.css('transform', 'scale(1.3)');
+            } else {
+                $indicator.addClass('bg-blue-200');
+                $indicator.css('transform', 'scale(1)');
             }
         });
 
+        // Reset transition flag
         setTimeout(() => {
             isTransitioning = false;
         }, 700);
+
+        console.log('Carousel updated - Current slide:', currentSlide);
     }
 
     // Navigation functions
     function nextSlide() {
         if (isTransitioning) return;
+        console.log('Next slide triggered');
         currentSlide = (currentSlide + 1) % totalCards;
         updateCarousel();
-        console.log('Next slide:', currentSlide);
     }
 
     function prevSlide() {
         if (isTransitioning) return;
+        console.log('Previous slide triggered');
         currentSlide = (currentSlide - 1 + totalCards) % totalCards;
         updateCarousel();
-        console.log('Previous slide:', currentSlide);
     }
 
     function goToSlide(index) {
         if (isTransitioning || index === currentSlide) return;
+        console.log('Going to slide:', index);
         currentSlide = index;
         updateCarousel();
-        console.log('Go to slide:', currentSlide);
     }
 
-    // Event listeners
-    if (prevBtn) {
-        prevBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            prevSlide();
-        });
-    }
-
-    if (nextBtn) {
-        nextBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            nextSlide();
-        });
-    }
-
-    // Indicator clicks
-    indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            goToSlide(index);
-        });
+    // Event listeners using jQuery
+    $prevBtn.off('click').on('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('Previous button clicked');
+        prevSlide();
     });
 
-    // Card clicks to navigate
-    carouselCards.forEach((card) => {
-        card.addEventListener('click', (e) => {
-            const cardIndex = parseInt(card.getAttribute('data-index'));
-            if (cardIndex !== currentSlide) {
-                e.preventDefault();
-                e.stopPropagation();
-                goToSlide(cardIndex);
-            }
-        });
+    $nextBtn.off('click').on('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('Next button clicked');
+        nextSlide();
+    });
+
+    // Indicator clicks
+    $indicators.off('click').on('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const index = parseInt($(this).attr('data-index'));
+        console.log('Indicator clicked:', index);
+        goToSlide(index);
+    });
+
+    // Card clicks - move clicked card to center
+    $carouselCards.off('click').on('click', function(e) {
+        const cardIndex = parseInt($(this).attr('data-index'));
+        console.log('Card clicked:', cardIndex, 'Current center:', currentSlide);
+        
+        // Only move to center if it's not already the center card
+        if (cardIndex !== currentSlide) {
+            e.preventDefault();
+            e.stopPropagation();
+            goToSlide(cardIndex);
+        }
     });
 
     // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (document.activeElement.tagName !== 'INPUT' && 
-            document.activeElement.tagName !== 'TEXTAREA') {
+    $(document).off('keydown.carousel').on('keydown.carousel', function(e) {
+        if ($('input:focus, textarea:focus').length === 0) {
             if (e.key === 'ArrowLeft') {
                 e.preventDefault();
                 prevSlide();
@@ -412,12 +456,10 @@ function initializeCarousel() {
     let touchStartX = 0;
     let touchEndX = 0;
 
-    carousel.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    carousel.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
+    $carousel.off('touchstart touchend').on('touchstart', function(e) {
+        touchStartX = e.originalEvent.changedTouches[0].screenX;
+    }).on('touchend', function(e) {
+        touchEndX = e.originalEvent.changedTouches[0].screenX;
         const difference = touchStartX - touchEndX;
         
         if (Math.abs(difference) > 50) {
@@ -427,27 +469,20 @@ function initializeCarousel() {
                 prevSlide();
             }
         }
-    }, { passive: true });
-
-    // Auto-advance carousel (optional)
-    let autoAdvance = setInterval(nextSlide, 8000);
-
-    // Pause on hover
-    carousel.addEventListener('mouseenter', () => {
-        clearInterval(autoAdvance);
     });
 
-    carousel.addEventListener('mouseleave', () => {
-        autoAdvance = setInterval(nextSlide, 8000);
-    });
+    // Auto-advance without hover controls
+    let autoAdvanceInterval = setInterval(nextSlide, 8000);
 
-    // Initial setup
+    // Initialize carousel
     updateCarousel();
-    console.log('Carousel initialized successfully');
+    
+    console.log('jQuery Carousel initialized successfully');
 }
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
+// Initialize when document is ready
+$(document).ready(function() {
     initializeCarousel();
+    
     // ... rest of existing DOMContentLoaded code ...
-});
+}); 

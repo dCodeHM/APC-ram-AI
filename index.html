@@ -105,10 +105,10 @@
         <!-- Quick Actions -->
         <div class="relative max-w-6xl mx-auto px-4 sm:px-6 mb-12 sm:mb-16">
             <!-- Carousel Container -->
-            <div class="relative h-96 overflow-hidden">
+            <div class="relative h-[500px] overflow-hidden rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 p-4">
                 <div id="carousel" class="flex items-center justify-center h-full relative">
                     <!-- Card 1 -->
-                    <div class="carousel-card absolute w-full max-w-sm transition-all duration-700 ease-out cursor-pointer" data-index="0">
+                    <div class="carousel-card absolute w-full max-w-sm transition-all duration-700 ease-out cursor-pointer left-1/2 -translate-x-1/2" data-index="0">
                         <div class="bg-white/95 backdrop-blur-xl p-8 rounded-3xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.15)] 
                             border border-white/30 
                             group h-80 flex flex-col justify-between">
@@ -127,7 +127,7 @@
                     </div>
 
                     <!-- Card 2 -->
-                    <div class="carousel-card absolute w-full max-w-sm transition-all duration-700 ease-out cursor-pointer" data-index="1">
+                    <div class="carousel-card absolute w-full max-w-sm transition-all duration-700 ease-out cursor-pointer left-1/2 -translate-x-1/2" data-index="1">
                         <div class="bg-white/95 backdrop-blur-xl p-8 rounded-3xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.15)] 
                             border border-white/30 
                             group h-80 flex flex-col justify-between">
@@ -146,7 +146,7 @@
                     </div>
 
                     <!-- Card 3 -->
-                    <div class="carousel-card absolute w-full max-w-sm transition-all duration-700 ease-out cursor-pointer" data-index="2">
+                    <div class="carousel-card absolute w-full max-w-sm transition-all duration-700 ease-out cursor-pointer left-1/2 -translate-x-1/2" data-index="2">
                         <div class="bg-white/95 backdrop-blur-xl p-8 rounded-3xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.15)] 
                             border border-white/30 
                             group h-80 flex flex-col justify-between">
@@ -166,18 +166,18 @@
                 </div>
 
                 <!-- Navigation Buttons -->
-                <button id="prevBtn">
+                <button id="prevBtn" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-[#e7af41] transition-colors z-20" aria-label="Previous card">
                     <i class="fas fa-chevron-left"></i>
                 </button>
-                <button id="nextBtn">
+                <button id="nextBtn" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-[#e7af41] transition-colors z-20" aria-label="Next card">
                     <i class="fas fa-chevron-right"></i>
                 </button>
 
                 <!-- Indicators -->
                 <div class="absolute -bottom-8 left-1/2 -translate-x-1/2 flex space-x-3 z-10">
-                    <button class="carousel-indicator" data-index="0"></button>
-                    <button class="carousel-indicator" data-index="1"></button>
-                    <button class="carousel-indicator" data-index="2"></button>
+                    <button class="carousel-indicator w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-[#e7af41] transition-colors" data-index="0" aria-label="Go to card 1"></button>
+                    <button class="carousel-indicator w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-[#e7af41] transition-colors" data-index="1" aria-label="Go to card 2"></button>
+                    <button class="carousel-indicator w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-[#e7af41] transition-colors" data-index="2" aria-label="Go to card 3"></button>
                 </div>
             </div>
         </div>
@@ -340,6 +340,110 @@
 
     <script src="js/main.js"></script>
     <script>
+        // Carousel functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.getElementById('carousel');
+            const cards = document.querySelectorAll('.carousel-card');
+            const indicators = document.querySelectorAll('.carousel-indicator');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            let currentIndex = 0;
+
+            // Function to update carousel position
+            function updateCarousel() {
+                cards.forEach((card, index) => {
+                    const offset = index - currentIndex;
+                    let transform = '';
+                    let opacity = '';
+                    let zIndex = '';
+                    let scale = '';
+
+                    if (offset === 0) {
+                        // Current card
+                        transform = 'translateX(0)';
+                        opacity = '1';
+                        zIndex = '10';
+                        scale = '1';
+                    } else if (offset === -1 || (currentIndex === 0 && index === cards.length - 1)) {
+                        // Previous card
+                        transform = 'translateX(-100%)';
+                        opacity = '0.5';
+                        zIndex = '5';
+                        scale = '0.9';
+                    } else if (offset === 1 || (currentIndex === cards.length - 1 && index === 0)) {
+                        // Next card
+                        transform = 'translateX(100%)';
+                        opacity = '0.5';
+                        zIndex = '5';
+                        scale = '0.9';
+                    } else {
+                        // Hidden cards
+                        transform = 'translateX(0)';
+                        opacity = '0';
+                        zIndex = '0';
+                        scale = '0.8';
+                    }
+
+                    card.style.transform = transform;
+                    card.style.opacity = opacity;
+                    card.style.zIndex = zIndex;
+                    card.style.scale = scale;
+                });
+
+                // Update indicators
+                indicators.forEach((indicator, index) => {
+                    if (index === currentIndex) {
+                        indicator.classList.add('bg-[#e7af41]');
+                        indicator.classList.remove('bg-gray-300');
+                    } else {
+                        indicator.classList.remove('bg-[#e7af41]');
+                        indicator.classList.add('bg-gray-300');
+                    }
+                });
+            }
+
+            // Event listeners for navigation buttons
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+                updateCarousel();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % cards.length;
+                updateCarousel();
+            });
+
+            // Event listeners for indicators
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateCarousel();
+                });
+            });
+
+            // Initialize carousel
+            updateCarousel();
+
+            // Auto-advance carousel every 5 seconds
+            let autoAdvance = setInterval(() => {
+                currentIndex = (currentIndex + 1) % cards.length;
+                updateCarousel();
+            }, 5000);
+
+            // Pause auto-advance on hover
+            carousel.addEventListener('mouseenter', () => {
+                clearInterval(autoAdvance);
+            });
+
+            carousel.addEventListener('mouseleave', () => {
+                autoAdvance = setInterval(() => {
+                    currentIndex = (currentIndex + 1) % cards.length;
+                    updateCarousel();
+                }, 5000);
+            });
+        });
+
+        // Existing chat toggle function
         function toggleChat() {
             const chatWindow = document.getElementById('chatWindow');
             const floatingLabel = document.getElementById('floatingLabel');
@@ -357,7 +461,7 @@
             }
         }
 
-        // Open links in new tab
+        // Existing link handling
         document.addEventListener("DOMContentLoaded", function() {
             document.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', function(event) {

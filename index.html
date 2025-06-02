@@ -3,12 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asia Pacific College - Kuya RAM</title>
+    <title>APC Kuya RAM</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- font -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- css stylesheet -->
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        #chatWindow {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 380px;
+            height: 600px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
 
+        #chatWindow.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-indigo-50"> 
     <!-- Navigation -->
@@ -72,14 +96,6 @@
                 <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">APC Students Support Hub</h2>
                 <p class="text-lg sm:text-xl mb-8 max-w-2xl mx-auto px-4">Get instant help with academic, administrative, and campus life queries. We're here to make your student journey smoother.</p>
                 
-                <!-- New integrated chat section -->
-                <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-2xl overflow-hidden">
-                    <iframe 
-                        src="https://copilotstudio.microsoft.com/environments/Default-aeb745e6-8166-4f8f-9233-179e8109c49e/bots/crd3e_websiteQADLTInB/webchat?__version__=2" 
-                        class="w-full h-[600px] border-0"
-                        title="Campus AI Assistant">
-                    </iframe>
-                </div>
             </div>
         </div>
     </div>
@@ -160,55 +176,142 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">About Us</h4>
-                    <p class="text-gray-400 text-sm sm:text-base">We're dedicated to making your university experience as smooth as possible.</p>
+    <footer class="bg-gradient-to-br from-gray-900 to-gray-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+            <!-- Main Footer Content -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+                <!-- Brand Section -->
+                <div class="space-y-6">
+                    <div class="flex items-center space-x-4">
+                        <img src="/image/APC-Gold_Site-Seal.png" alt="APC Seal" class="w-12 h-12 rounded-full overflow-hidden">
+                        <h3 class="text-xl font-bold text-[#e7af41]">Asia Pacific College</h3>
+                    </div>
+                    <p class="text-gray-300 leading-relaxed max-w-sm text-justify">APC believes that professional competence is best fostered by coupling teaching and hands-on training to produce mainsprings of growth in an economy which is increasingly defined by technology.</p>
                 </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Contact Us</h4>
-                    <p class="text-gray-400 text-sm sm:text-base">Email: support@studenthelpdesk.edu</p>
-                    <p class="text-gray-400 text-sm sm:text-base">Phone: (555) 123-4567</p>
+
+                <!-- Contact Section -->
+                <div class="space-y-6">
+                    <h4 class="text-xl font-semibold text-[#e7af41] border-b border-[#e7af41] pb-2 inline-block font-['Poppins'] tracking-wide">Contact Us</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-map-marker-alt mt-1 text-[#e7af41]"></i>
+                            <p class="text-gray-300">ASIA PACIFIC COLLEGE - 3 Humabon Place, Magallanes, Makati City 1232 PH</p>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-envelope text-[#e7af41]"></i>
+                            <a href="mailto:admissions@apc.edu.ph" class="text-gray-300 hover:text-blue-400 transition-colors">admissions@apc.edu.ph</a>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-phone text-[#e7af41]"></i>
+                                <p class="text-gray-300">+63 2 8852 9232</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-mobile-alt text-[#e7af41]"></i>
+                                <p class="text-gray-300">+63 917 816 5570</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">FAQ</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">Privacy Policy</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">Terms of Service</a></li>
+
+                <!-- Quick Links -->
+                <div class="space-y-6">
+                    <h4 class="text-xl font-semibold text-[#e7af41] border-b border-[#e7af41] pb-2 inline-block font-['Poppins'] tracking-wide">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="#" class="group flex items-center text-gray-300 hover:text-blue-400 transition-colors">
+                                <i class="fas fa-chevron-right text-sm mr-2 text-[#e7af41] group-hover:translate-x-1 transition-transform"></i>
+                                RAMS Portal
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.apc.edu.ph/privacy-policy/" class="group flex items-center text-gray-300 hover:text-blue-400 transition-colors">
+                                <i class="fas fa-chevron-right text-sm mr-2 text-[#e7af41] group-hover:translate-x-1 transition-transform"></i>
+                                Privacy Policy
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.apc.edu.ph/administrators/" class="group flex items-center text-gray-300 hover:text-blue-400 transition-colors">
+                                <i class="fas fa-chevron-right text-sm mr-2 text-[#e7af41] group-hover:translate-x-1 transition-transform"></i>
+                                Administrators
+                            </a>
+                        </li>
                     </ul>
                 </div>
-                <div>
-                    <h4 class="text-lg font-semibold mb-4">Follow Us</h4>
+
+                <!-- Social Links -->
+                <div class="space-y-6">
+                    <h4 class="text-xl font-semibold text-[#e7af41] border-b border-[#e7af41] pb-2 inline-block font-['Poppins'] tracking-wide">Connect With Us</h4>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fab fa-twitter text-lg sm:text-xl"></i>
+                        <a href="https://www.facebook.com/asiapacificcollege.edu/" class="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center hover:bg-[#e7af41] transition-colors">
+                            <i class="fab fa-facebook-f text-lg"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fab fa-facebook text-lg sm:text-xl"></i>
+                        <a href="https://x.com/apcrams" class="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center hover:bg-[#e7af41] transition-colors">
+                            <i class="fab fa-twitter text-lg"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fab fa-linkedin text-lg sm:text-xl"></i>
+                        <a href="https://www.linkedin.com/school/asiapacificcollege/" class="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center hover:bg-[#e7af41] transition-colors">
+                            <i class="fab fa-linkedin-in text-lg"></i>
                         </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fab fa-instagram text-lg sm:text-xl"></i>
+                        <a href="https://www.instagram.com/asiapacificcollege/" class="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center hover:bg-[#e7af41] transition-colors">
+                            <i class="fab fa-instagram text-lg"></i>
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm sm:text-base">
-                <p>&copy; 2024 Student Help Desk. All rights reserved.</p>
+
+            <!-- Copyright -->
+            <div class="border-t border-gray-700 mt-12 pt-8 text-center">
+                <p class="text-gray-400">&copy; Copyright 2024 Asia Pacific College. All rights reserved.</p>
             </div>
         </div>
     </footer>
+
+    <!-- AI Chatbot Widget Kuya RAM -->
+    <div class="fixed bottom-8 right-8 z-50">
+        <div id="floatingLabel" class="absolute -top-8 right-0 bg-white px-3 py-1 rounded-full shadow-md text-gray-700 text-sm font-medium whitespace-nowrap">
+            Ask RAMs AI
+            <div class="absolute bottom-0 right-5 transform translate-y-1/2 rotate-45 w-2 h-2 bg-white"></div>
+        </div>
+        <button onclick="toggleChat()" class="chat-button group flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-r from-yellow-200 to-[#e7af41] text-white shadow-lg hover:scale-110 transition-all duration-300" aria-label="Toggle chat">
+            <i class="fas fa-comment-dots text-2xl group-hover:scale-110 transition-transform"></i>
+        </button>
+        <div id="chatWindow" class="hidden">
+            <div class="flex items-center justify-between p-4 border-b border-gray-100 rounded-t-2xl bg-white">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
+                        <i class="fas fa-robot text-blue-600"></i>
+                    </div>
+                    <h3 class="ml-2 font-semibold text-gray-800">APC Kuya RAM</h3>
+                </div>
+                <button onclick="toggleChat()" class="text-gray-500 hover:text-gray-700 transition-colors">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <iframe 
+                src="https://copilotstudio.microsoft.com/environments/Default-aeb745e6-8166-4f8f-9233-179e8109c49e/bots/crd3e_websiteQADLTInB/webchat?__version__=2" 
+                class="w-full h-[calc(100%-4rem)] rounded-b-2xl"
+                title="Campus AI Assistant">
+            </iframe>
+        </div>
+    </div>
 
     <script src="js/main.js"></script>
     <script>
         function toggleChat() {
             const chatWindow = document.getElementById('chatWindow');
+            const floatingLabel = document.getElementById('floatingLabel');
+            
             chatWindow.classList.toggle('active');
+            
+            // Hide label when chat is opened, show when closed
+            if (chatWindow.classList.contains('active')) {
+                floatingLabel.classList.add('opacity-0', 'translate-y-2', 'invisible');
+            } else {
+                // Add a small delay before showing the label
+                setTimeout(() => {
+                    floatingLabel.classList.remove('opacity-0', 'translate-y-2', 'invisible');
+                }, 300);
+            }
         }
 
         <!-- Open links in new tab -->

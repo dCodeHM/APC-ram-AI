@@ -20,13 +20,13 @@ html {
 
 @keyframes pulse {
     0% {
-        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4);
     }
-    50% {
-        transform: scale(1.05);
+    70% {
+        box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
     }
     100% {
-        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
     }
 }
 
@@ -162,52 +162,57 @@ html {
         opacity: 1;
         transform: translateY(0);
     }
-} 
+}
 
-
-.chat-widget {
+/* Remove duplicate chat window styles and consolidate them */
+#chatWindow {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-}
-.chat-button {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: #2563eb;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-.chat-button:hover {
-    transform: scale(1.1);
-    background-color: #1d4ed8;
-}
-.chat-window {
-    position: fixed;
-    bottom: 90px;
-    right: 20px;
-    width: 350px;
-    height: 500px;
+    bottom: 100px;
+    right: 30px;
+    width: 380px;
+    height: 600px;
     background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    display: none;
-    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     z-index: 1000;
+    display: none;
 }
-.chat-window.active {
+
+#chatWindow.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
     display: block;
 }
-.chat-iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
+
+/* Floating label styles */
+#floatingLabel {
+    transition: all 0.3s ease-in-out;
+}
+
+#floatingLabel.invisible {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(2px);
+}
+
+/* Chat button styles */
+.chat-button {
+    animation: subtle-pulse 2s infinite;
+}
+
+.chat-button.active {
+    animation: none;
+}
+
+@keyframes subtle-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(231, 175, 65, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(231, 175, 65, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(231, 175, 65, 0); }
 }
 
 /* font */
@@ -215,4 +220,57 @@ html {
 .nav-link {
     font-family: 'Poppins', sans-serif;
     letter-spacing: 0.5px;
+}
+
+/* Chat window animations */
+.chat-window {
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.chat-window.active {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Optional: Add a subtle bounce effect */
+@keyframes chatBounce {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-5px) scale(1.02); }
+}
+
+.chat-window.active {
+    animation: chatBounce 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Add floating label for chat button */
+.chat-button::before {
+    content: 'Chat with Kuya RAM';
+    position: absolute;
+    right: 120%;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.chat-button:hover::before {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Add bounce animation for chat window */
+@keyframes chat-bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+.chat-window.active {
+    animation: chat-bounce 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }

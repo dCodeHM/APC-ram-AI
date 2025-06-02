@@ -220,4 +220,54 @@ window.addEventListener('scroll', () => {
         });
         ticking = true;
     }
+});
+
+// Chat Widget Toggle Function
+function toggleChat() {
+    const chatWindow = document.getElementById('chatWindow');
+    const floatingLabel = document.getElementById('floatingLabel');
+    const chatButton = document.querySelector('.chat-button');
+    
+    if (!chatWindow.classList.contains('active')) {
+        // Opening the chat
+        chatWindow.style.display = 'block';
+        requestAnimationFrame(() => {
+            chatWindow.classList.add('active');
+            chatButton.classList.add('active');
+            floatingLabel.classList.add('invisible');
+        });
+    } else {
+        // Closing the chat
+        chatWindow.classList.remove('active');
+        chatButton.classList.remove('active');
+        floatingLabel.classList.remove('invisible');
+        setTimeout(() => {
+            if (!chatWindow.classList.contains('active')) {
+                chatWindow.style.display = 'none';
+            }
+        }, 300);
+    }
+}
+
+// Add escape key handler to close chat
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const chatWindow = document.getElementById('chatWindow');
+        if (chatWindow.classList.contains('active')) {
+            toggleChat();
+        }
+    }
+});
+
+// Improve click outside handling
+document.addEventListener('click', (e) => {
+    const chatWindow = document.getElementById('chatWindow');
+    const chatButton = document.querySelector('.chat-button');
+    
+    if (chatWindow && chatButton && 
+        !chatWindow.contains(e.target) && 
+        !chatButton.contains(e.target) && 
+        chatWindow.classList.contains('active')) {
+        toggleChat();
+    }
 }); 

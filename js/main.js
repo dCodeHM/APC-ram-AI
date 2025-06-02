@@ -270,4 +270,184 @@ document.addEventListener('click', (e) => {
         chatWindow.classList.contains('active')) {
         toggleChat();
     }
-}); 
+});
+
+// Carousel functionality - Improved for side-by-side layout
+let currentSlide = 0;
+let isTransitioning = false;
+
+function initializeCarousel() {
+    const carousel = document.getElementById('carousel');
+    const carouselCards = document.querySelectorAll('.carousel-card');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const indicators = document.querySelectorAll('.carousel-indicator');
+    const totalCards = carouselCards.length;
+
+    if (!carousel || totalCards === 0) {
+        console.log('Carousel elements not found');
+        return;
+    }
+
+    console.log('Initializing carousel with', totalCards, 'cards');
+
+    // Update carousel display with proper positioning
+    function updateCarousel() {
+        if (isTransitioning) return;
+        isTransitioning = true;
+
+        carouselCards.forEach((card, index) => {
+            const cardIndex = parseInt(card.getAttribute('data-index'));
+            
+            // Remove all position classes
+            card.classList.remove('active', 'left', 'right', 'hidden');
+            
+            // Calculate position relative to current slide
+            let position = cardIndex - currentSlide;
+            
+            // Handle wrapping
+            if (position > 1) position -= totalCards;
+            if (position < -1) position += totalCards;
+            
+            // Apply appropriate class based on position
+            if (position === 0) {
+                card.classList.add('active');
+            } else if (position === -1) {
+                card.classList.add('left');
+            } else if (position === 1) {
+                card.classList.add('right');
+            } else {
+                card.classList.add('hidden');
+            }
+        });
+
+        // Update indicators
+        indicators.forEach((indicator, index) => {
+            indicator.classList.remove('active');
+            if (index === currentSlide) {
+                indicator.classList.add('active');
+            }
+        });
+
+        setTimeout(() => {
+            isTransitioning = false;
+        }, 700);
+    }
+
+    // Navigation functions
+    function nextSlide() {
+        if (isTransitioning) return;
+        currentSlide = (currentSlide + 1) % totalCards;
+        updateCarousel();
+        console.log('Next slide:', currentSlide);
+    }
+
+    function prevSlide() {
+        if (isTransitioning) return;
+        currentSlide = (currentSlide - 1 + totalCards) % totalCards;
+        updateCarousel();
+        console.log('Previous slide:', currentSlide);
+    }
+
+    function goToSlide(index) {
+        if (isTransitioning || index === currentSlide) return;
+        currentSlide = index;
+        updateCarousel();
+        console.log('Go to slide:', currentSlide);
+    }
+
+    // Event listeners
+    if (prevBtn) {
+        prevBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            prevSlide();
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            nextSlide();
+        });
+    }
+
+    // Indicator clicks
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            goToSlide(index);
+        });
+    });
+
+    // Card clicks to navigate
+    carouselCards.forEach((card) => {
+        card.addEventListener('click', (e) => {
+            const cardIndex = parseInt(card.getAttribute('data-index'));
+            if (cardIndex !== currentSlide) {
+                e.preventDefault();
+                e.stopPropagation();
+                goToSlide(cardIndex);
+            }
+        });
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (document.activeElement.tagName !== 'INPUT' && 
+            document.activeElement.tagName !== 'TEXTAREA') {
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevSlide();
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                nextSlide();
+            }
+        }
+    });
+
+    // Touch/swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    carousel.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    carousel.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const difference = touchStartX - touchEndX;
+        
+        if (Math.abs(difference) > 50) {
+            if (difference > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        }
+    }, { passive: true });
+
+    // Auto-advance carousel (optional)
+    let autoAdvance = setInterval(nextSlide, 8000);
+
+    // Pause on hover
+    carousel.addEventListener('mouseenter', () => {
+        clearInterval(autoAdvance);
+    });
+
+    carousel.addEventListener('mouseleave', () => {
+        autoAdvance = setInterval(nextSlide, 8000);
+    });
+
+    // Initial setup
+    updateCarousel();
+    console.log('Carousel initialized successfully');
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initializeCarousel();
+    // ... rest of existing DOMContentLoaded code ...
+});

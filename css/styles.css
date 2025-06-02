@@ -274,3 +274,285 @@ html {
 .chat-window.active {
     animation: chat-bounce 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
+
+/* Update card wrapper styles */
+.card-wrapper {
+    position: absolute;
+    width: 100%;
+    max-width: 32rem;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    will-change: transform, opacity;
+}
+
+/* Smooth transitions for all transformable properties */
+.card-wrapper {
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                z-index 0.5s step-end;
+}
+
+/* Hover effect for cards */
+.card-wrapper:hover {
+    transform: scale(1.05) !important;
+    z-index: 10 !important;
+}
+
+/* Remove perspective and 3D transforms */
+.perspective-1000 {
+    perspective: none;
+}
+
+.transform-style-3d {
+    transform-style: flat;
+}
+
+/* Navigation button styles */
+#prevBtn, #nextBtn {
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+#prevBtn:hover, #nextBtn:hover {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Indicator styles */
+[data-index] {
+    transition: all 0.3s ease;
+}
+
+[data-index]:hover {
+    transform: scale(1.2);
+}
+
+/* Optional: Add a subtle gradient background animation */
+@keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.gradient-animate {
+    background: linear-gradient(-45deg, #3b82f6, #1d4ed8, #2563eb, #60a5fa);
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+}
+
+/* Enhanced Carousel Container */
+#carousel {
+    perspective: 1200px;
+    transform-style: preserve-3d;
+}
+
+/* Carousel Card Base Styles */
+.carousel-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform, opacity, filter;
+    cursor: pointer;
+    max-width: 350px;
+    width: 90%;
+}
+
+/* Card positioning - side by side layout */
+.carousel-card[data-index="0"] {
+    transform: translate(-50%, -50%) translateX(-400px) scale(0.8);
+    opacity: 0.6;
+    z-index: 20;
+    filter: brightness(0.9);
+}
+
+.carousel-card[data-index="1"] {
+    transform: translate(-50%, -50%) translateX(0) scale(1);
+    opacity: 1;
+    z-index: 30;
+    filter: brightness(1);
+}
+
+.carousel-card[data-index="2"] {
+    transform: translate(-50%, -50%) translateX(400px) scale(0.8);
+    opacity: 0.6;
+    z-index: 20;
+    filter: brightness(0.9);
+}
+
+/* Active card (center) */
+.carousel-card.active {
+    transform: translate(-50%, -50%) translateX(0) scale(1) !important;
+    opacity: 1 !important;
+    z-index: 30 !important;
+    filter: brightness(1) !important;
+}
+
+/* Left card */
+.carousel-card.left {
+    transform: translate(-50%, -50%) translateX(-400px) scale(0.8) !important;
+    opacity: 0.6 !important;
+    z-index: 20 !important;
+    filter: brightness(0.9) !important;
+}
+
+/* Right card */
+.carousel-card.right {
+    transform: translate(-50%, -50%) translateX(400px) scale(0.8) !important;
+    opacity: 0.6 !important;
+    z-index: 20 !important;
+    filter: brightness(0.9) !important;
+}
+
+/* Hidden card */
+.carousel-card.hidden {
+    transform: translate(-50%, -50%) translateX(0) scale(0.6) !important;
+    opacity: 0 !important;
+    z-index: 10 !important;
+    pointer-events: none !important;
+}
+
+/* Enhanced hover effects */
+.carousel-card:hover {
+    transform: translate(-50%, -60%) translateX(var(--x-offset, 0)) scale(var(--scale, 1.05)) !important;
+}
+
+.carousel-card:hover .bg-white\/95 {
+    box-shadow: 0 30px 70px rgba(8, 112, 184, 0.3) !important;
+    border-color: rgba(59, 130, 246, 0.3);
+}
+
+/* Active card special effects */
+.carousel-card.active .bg-white\/95 {
+    box-shadow: 0 25px 60px rgba(8, 112, 184, 0.25), 
+                0 0 0 1px rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.2);
+}
+
+/* Navigation button enhancements */
+#prevBtn, #nextBtn {
+    width: 56px;
+    height: 56px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+#prevBtn:hover, #nextBtn:hover {
+    transform: translateY(-50%) scale(1.15);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    background: rgba(255, 255, 255, 1);
+}
+
+#prevBtn:active, #nextBtn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+/* Enhanced indicator styles */
+.carousel-indicator {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.carousel-indicator:hover {
+    transform: scale(1.4);
+    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.5);
+}
+
+.carousel-indicator.active {
+    background-color: #2563eb !important;
+    width: 24px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
+}
+
+/* Card content animations */
+.carousel-card .group:hover .fas {
+    animation: icon-bounce 0.6s ease-in-out;
+}
+
+@keyframes icon-bounce {
+    0%, 100% { transform: scale(1.1) rotate(3deg); }
+    50% { transform: scale(1.2) rotate(-3deg); }
+}
+
+/* Glass effect improvements */
+.bg-white\/95 {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .carousel-card[data-index="0"],
+    .carousel-card.left {
+        transform: translate(-50%, -50%) translateX(-300px) scale(0.75) !important;
+    }
+    
+    .carousel-card[data-index="2"],
+    .carousel-card.right {
+        transform: translate(-50%, -50%) translateX(300px) scale(0.75) !important;
+    }
+    
+    #prevBtn, #nextBtn {
+        width: 48px;
+        height: 48px;
+    }
+    
+    #prevBtn {
+        left: 8px;
+    }
+    
+    #nextBtn {
+        right: 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-card {
+        max-width: 280px;
+    }
+    
+    .carousel-card[data-index="0"],
+    .carousel-card.left {
+        transform: translate(-50%, -50%) translateX(-200px) scale(0.7) !important;
+        opacity: 0.3 !important;
+    }
+    
+    .carousel-card[data-index="2"],
+    .carousel-card.right {
+        transform: translate(-50%, -50%) translateX(200px) scale(0.7) !important;
+        opacity: 0.3 !important;
+    }
+    
+    #prevBtn, #nextBtn {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 640px) {
+    .carousel-card[data-index="0"],
+    .carousel-card.left {
+        transform: translate(-50%, -50%) translateX(-150px) scale(0.6) !important;
+        opacity: 0.2 !important;
+    }
+    
+    .carousel-card[data-index="2"],
+    .carousel-card.right {
+        transform: translate(-50%, -50%) translateX(150px) scale(0.6) !important;
+        opacity: 0.2 !important;
+    }
+}
+
+/* Smooth transitions for all carousel elements */
+.carousel-card,
+.carousel-card * {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}

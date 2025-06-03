@@ -592,7 +592,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-green-100/50 transform hover:scale-[1.02] transition-all duration-300 md:order-2">
                             <h3 class="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
                                 <i class="fas fa-clock text-green-600 mr-3"></i>
@@ -769,7 +769,7 @@
     <!-- About Us Section with Toggle -->
     <div class="relative bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
         <!-- Toggle Button Container -->
-        <div class="flex justify-center items-center py-8">
+        <div class="flex justify-center items-center py-2">
             <button id="aboutUsToggle" class="group relative flex items-center justify-center gap-3 px-6 py-3 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                 <span class="text-lg font-semibold text-gray-700 group-hover:text-[#e7af41] transition-colors">Our Team</span>
                 <div class="relative w-6 h-6 flex items-center justify-center">
@@ -782,26 +782,48 @@
 
         <!-- About Us Content -->
         <div id="aboutUsContent" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <!-- Mission Section -->
-                <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-[#e7af41]/20 transform hover:scale-[1.02] transition-all duration-300">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Our Team Section -->
+                <div class="md:col-span-2 bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-[#e7af41]/20 transform hover:scale-[1.02] transition-all duration-300">
                     <div class="flex items-center gap-4 mb-6">
                         <div class="w-12 h-12 rounded-full bg-[#e7af41]/10 flex items-center justify-center">
-                            <i class="fas fa-bullseye text-[#e7af41] text-xl"></i>
+                            <i class="fas fa-users text-[#e7af41] text-xl"></i>
                         </div>
-                        <h2 class="text-3xl font-bold text-gray-800">Our Mission</h2>
+                        <h2 class="text-3xl font-bold text-gray-800">Our Team</h2>
                     </div>
-                    <p class="text-gray-600 leading-relaxed mb-6">
-                        Asia Pacific College is committed to providing quality education that combines academic excellence with practical skills. We aim to develop professionals who are not only technically competent but also socially responsible and globally competitive.
-                    </p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="flex items-center space-x-3 p-3 rounded-lg bg-[#e7af41]/5 hover:bg-[#e7af41]/10 transition-colors">
-                            <i class="fas fa-graduation-cap text-[#e7af41]"></i>
-                            <span class="text-sm text-gray-700">Quality Education</span>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Team Member 1 -->
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden transform hover:scale-105 transition-all duration-300">
+                            <div class="relative w-full h-64 overflow-hidden">
+                                <img src="/image/Honniel.png" alt="Honniel" class="absolute inset-0 w-full h-full object-cover object-center">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-l text-gray-800 mb-2"><span class="font-bold text-[#e7af41]">Manes</span>, Honniel</h3>
+                                <p class="text-gray-600 text-sm">BS Computer Engineering - Software Development</p>
+                            </div>
                         </div>
-                        <div class="flex items-center space-x-3 p-3 rounded-lg bg-[#e7af41]/5 hover:bg-[#e7af41]/10 transition-colors">
-                            <i class="fas fa-users text-[#e7af41]"></i>
-                            <span class="text-sm text-gray-700">Student Success</span>
+                        
+                        <!-- Team Member 2 -->
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden transform hover:scale-105 transition-all duration-300">
+                            <div class="relative w-full h-64 overflow-hidden">
+                                <img src="/image/jasper.png" alt="Pinlac" class="absolute inset-0 w-full h-full object-cover object-center">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-l text-gray-800 mb-2"><span class="font-bold text-[#e7af41]">Abogado</span>, Jasper Daniel</h3>
+                                <p class="text-gray-600 text-sm">BS Computer Science - Software and Systems</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Team Member 3 -->
+                        <div class="bg-white rounded-xl shadow-md overflow-hidden transform hover:scale-105 transition-all duration-300">
+                            <div class="relative w-full h-64 overflow-hidden">
+                                <img src="/image/pinlac.png" alt="Jasper" class="absolute inset-0 w-full h-full object-cover object-center">
+                            </div>
+                            <div class="p-4">
+                                <h3 class="text-l text-gray-800 mb-2"><span class="font-bold text-[#e7af41]">Pinlac</span>, Matthew Aaron</h3>
+                                <p class="text-gray-600 text-sm">BS Computer Science - Cybersecurity and Forensics
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

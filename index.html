@@ -34,6 +34,32 @@
             transform: translateY(0);
         }
 
+        /* About Us Section Styles */
+        #aboutUsContent {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        #aboutUsContent.hidden {
+            display: none;
+        }
+
+        #aboutUsContent:not(.hidden) {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #aboutUsToggle i {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #aboutUsToggle:hover {
+            transform: translateY(-2px);
+        }
+
         /* Enhanced animated background styles */
         .animated-bg {
             position: absolute;
@@ -257,11 +283,11 @@
                         Home
                         <span class="absolute bottom-0 left-0 w-full h-0.5 bg-[#e7af41] transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
                     </a>
-                    <a href="#" class="nav-link relative px-3 py-2 text-gray-700 hover:text-[#e7af41] font-semibold text-sm uppercase tracking-wider transition-colors duration-300 group">
-                        About Us
+                    <a href="#aboutUsToggle" class="nav-link relative px-3 py-2 text-gray-700 hover:text-[#e7af41] font-semibold text-sm uppercase tracking-wider transition-colors duration-300 group" id="navAboutUs">
+                        Our Team
                         <span class="absolute bottom-0 left-0 w-full h-0.5 bg-[#e7af41] transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
                     </a>
-                    <a href="#" class="nav-link relative px-3 py-2 text-gray-700 hover:text-[#e7af41] font-semibold text-sm uppercase tracking-wider transition-colors duration-300 group">
+                    <a href="#services" class="nav-link relative px-3 py-2 text-gray-700 hover:text-[#e7af41] font-semibold text-sm uppercase tracking-wider transition-colors duration-300 group" id="navServices">
                         Services
                         <span class="absolute bottom-0 left-0 w-full h-0.5 bg-[#e7af41] transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
                     </a>
@@ -423,7 +449,7 @@
         </div>
 
         <!-- Features Section -->
-        <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-12 mb-12 sm:mb-16">
+        <div id="services" class="bg-white rounded-2xl shadow-xl p-6 sm:p-12 mb-12 sm:mb-16">
             <h3 class="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12">How We Can Help You</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="text-center">
@@ -740,6 +766,72 @@
         </section>
     </div>
 
+    <!-- About Us Section with Toggle -->
+    <div class="relative bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
+        <!-- Toggle Button Container -->
+        <div class="flex justify-center items-center py-8">
+            <button id="aboutUsToggle" class="group relative flex items-center justify-center gap-3 px-6 py-3 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <span class="text-lg font-semibold text-gray-700 group-hover:text-[#e7af41] transition-colors">Our Team</span>
+                <div class="relative w-6 h-6 flex items-center justify-center">
+                    <i class="fas fa-chevron-down text-[#e7af41] transform transition-transform duration-300 group-hover:scale-110"></i>
+                </div>
+                <!-- Animated border effect -->
+                <div class="absolute inset-0 rounded-full border-2 border-[#e7af41] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </button>
+        </div>
+
+        <!-- About Us Content -->
+        <div id="aboutUsContent" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Mission Section -->
+                <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-[#e7af41]/20 transform hover:scale-[1.02] transition-all duration-300">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-[#e7af41]/10 flex items-center justify-center">
+                            <i class="fas fa-bullseye text-[#e7af41] text-xl"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-gray-800">Our Mission</h2>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        Asia Pacific College is committed to providing quality education that combines academic excellence with practical skills. We aim to develop professionals who are not only technically competent but also socially responsible and globally competitive.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="flex items-center space-x-3 p-3 rounded-lg bg-[#e7af41]/5 hover:bg-[#e7af41]/10 transition-colors">
+                            <i class="fas fa-graduation-cap text-[#e7af41]"></i>
+                            <span class="text-sm text-gray-700">Quality Education</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 rounded-lg bg-[#e7af41]/5 hover:bg-[#e7af41]/10 transition-colors">
+                            <i class="fas fa-users text-[#e7af41]"></i>
+                            <span class="text-sm text-gray-700">Student Success</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vision Section -->
+                <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-[#e7af41]/20 transform hover:scale-[1.02] transition-all duration-300">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-[#e7af41]/10 flex items-center justify-center">
+                            <i class="fas fa-eye text-[#e7af41] text-xl"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-gray-800">Our Vision</h2>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        To be a leading educational institution that produces innovative and ethical professionals who contribute to the advancement of technology and society. We envision a future where our graduates are at the forefront of technological innovation and social progress.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="flex items-center space-x-3 p-3 rounded-lg bg-[#e7af41]/5 hover:bg-[#e7af41]/10 transition-colors">
+                            <i class="fas fa-lightbulb text-[#e7af41]"></i>
+                            <span class="text-sm text-gray-700">Innovation</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 rounded-lg bg-[#e7af41]/5 hover:bg-[#e7af41]/10 transition-colors">
+                            <i class="fas fa-globe text-[#e7af41]"></i>
+                            <span class="text-sm text-gray-700">Global Impact</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="bg-gradient-to-br from-gray-900 to-gray-800 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
@@ -826,7 +918,7 @@
 
             <!-- Copyright -->
             <div class="border-t border-gray-700 mt-12 pt-8 text-center">
-                <p class="text-gray-400">&copy; Copyright 2024 Asia Pacific College. All rights reserved.</p>
+                <p class="text-gray-400">&copy; Copyright 2025 Asia Pacific College. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -862,8 +954,62 @@
 
     <script src="js/main.js"></script>
     <script>
-        // Carousel functionality
         document.addEventListener('DOMContentLoaded', function() {
+            // About Us Toggle Functionality
+            const aboutUsToggle = document.getElementById('aboutUsToggle');
+            const aboutUsContent = document.getElementById('aboutUsContent');
+            const toggleIcon = aboutUsToggle.querySelector('i');
+            const navAboutUs = document.getElementById('navAboutUs');
+            let isAboutUsOpen = false;
+
+            function toggleAboutUs() {
+                isAboutUsOpen = !isAboutUsOpen;
+                
+                // Toggle content visibility with smooth animation
+                if (isAboutUsOpen) {
+                    aboutUsContent.classList.remove('hidden');
+                    aboutUsContent.style.maxHeight = aboutUsContent.scrollHeight + 'px';
+                    toggleIcon.style.transform = 'rotate(180deg)';
+                    aboutUsToggle.classList.add('bg-[#e7af41]/5');
+                } else {
+                    aboutUsContent.style.maxHeight = '0';
+                    toggleIcon.style.transform = 'rotate(0deg)';
+                    aboutUsToggle.classList.remove('bg-[#e7af41]/5');
+                    setTimeout(() => {
+                        aboutUsContent.classList.add('hidden');
+                    }, 300);
+                }
+            }
+
+            // Toggle button click handler
+            aboutUsToggle.addEventListener('click', toggleAboutUs);
+
+            // Navigation link click handler
+            navAboutUs.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Scroll to the About Us section
+                aboutUsToggle.scrollIntoView({ behavior: 'smooth' });
+                
+                // If the section is not already open, open it
+                if (!isAboutUsOpen) {
+                    setTimeout(toggleAboutUs, 500); // Wait for scroll to complete
+                }
+            });
+
+            // Services navigation link click handler
+            const navServices = document.getElementById('navServices');
+            navServices.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Scroll to the services section
+                document.getElementById('services').scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+
+            // Existing carousel code
             const carousel = document.getElementById('carousel');
             const cards = document.querySelectorAll('.carousel-card');
             const indicators = document.querySelectorAll('.carousel-indicator');

@@ -574,3 +574,188 @@ html {
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
 }
+
+/* Dropdown styles for registration process */
+[id$="-content"] {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+[id$="-content"].active {
+    max-height: 500px;
+    opacity: 1;
+}
+
+/* Dropdown button styles */
+button[onclick^="toggleDropdown"] {
+    transition: all 0.3s ease;
+}
+
+button[onclick^="toggleDropdown"]:hover {
+    background-color: rgba(59, 130, 246, 0.05);
+}
+
+button[onclick^="toggleDropdown"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+/* Chevron icon animation */
+.fa-chevron-down {
+    transition: transform 0.3s ease;
+}
+
+/* Responsive adjustments for dropdowns */
+@media (max-width: 640px) {
+    [id$="-content"] {
+        padding-left: 1rem;
+    }
+    
+    button[onclick^="toggleDropdown"] {
+        padding: 0.5rem;
+    }
+}
+
+/* Ensure smooth section height transitions */
+#course-registration {
+    transition: min-height 0.3s ease-in-out;
+}
+
+/* Add subtle hover effect to dropdown items */
+[id$="-content"] p:hover,
+[id$="-content"] li:hover {
+    color: #2563eb;
+    transform: translateX(4px);
+    transition: all 0.2s ease;
+}
+
+/* Improve accessibility */
+button[onclick^="toggleDropdown"] {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Add focus ring for keyboard navigation */
+button[onclick^="toggleDropdown"]:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Card height handling */
+.bg-white\/80 {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: height;
+}
+
+/* Ensure dropdown content doesn't affect card height */
+[id$="-content"] {
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Improve card transitions */
+.bg-white\/80 {
+    transition: transform 0.3s ease-in-out, 
+                box-shadow 0.3s ease-in-out,
+                height 0.3s ease-in-out;
+}
+
+/* Ensure proper spacing in grid */
+.grid {
+    align-items: stretch;
+}
+
+/* Responsive height adjustments */
+@media (max-width: 768px) {
+    .bg-white\/80 {
+        min-height: 350px;
+    }
+}
+
+@media (max-width: 640px) {
+    .bg-white\/80 {
+        min-height: 300px;
+    }
+}
+
+/* Ensure smooth height transitions */
+.bg-white\/80 ul {
+    transition: height 0.3s ease-in-out;
+}
+
+/* Improve dropdown animations */
+[id$="-content"] {
+    transform-origin: top;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[id$="-content"].active {
+    transform: scaleY(1);
+    opacity: 1;
+}
+
+/* Registration Process Numbered Steps */
+.bg-blue-100 .text-blue-600 {
+    position: relative;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.bg-blue-100:hover .text-blue-600 {
+    transform: scale(1.2);
+}
+
+/* Add a subtle pulse animation to the numbers */
+@keyframes numberPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.bg-blue-100 .text-blue-600 {
+    animation: numberPulse 2s infinite;
+}
+
+/* Add a connecting line between steps */
+.space-y-4 > li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 40px;
+    width: 2px;
+    height: calc(100% - 40px);
+    background: linear-gradient(to bottom, #93c5fd, transparent);
+    z-index: 0;
+}
+
+/* Add hover effect to step numbers */
+.bg-blue-100:hover {
+    background-color: #dbeafe !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.1);
+}
+
+/* Add active state for current step */
+.bg-blue-100.active {
+    background-color: #bfdbfe !important;
+    box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2);
+}
+
+/* Improve accessibility for step numbers */
+.bg-blue-100 .text-blue-600 {
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}

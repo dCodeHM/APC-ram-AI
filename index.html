@@ -583,38 +583,75 @@
                         </div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-12">
-                        <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 shadow-xl border border-blue-100/50 transform hover:scale-[1.02] transition-all duration-300">
+                        <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 shadow-xl border border-blue-100/50 transform hover:scale-[1.02] transition-all duration-300 min-h-[400px] flex flex-col">
                             <h3 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-4 sm:mb-6 flex items-center">
                                 <i class="fas fa-clipboard-check text-blue-600 mr-3"></i>
                                 Registration Process
                             </h3>
-                            <ul class="space-y-4 sm:space-y-6">
-                                <li class="flex items-start group">
-                                    <div class="bg-blue-100 p-2 rounded-lg mr-3 sm:mr-4 group-hover:bg-blue-200 transition-colors">
-                                        <i class="fas fa-check-circle text-blue-600 text-lg sm:text-xl"></i>
+                            <ul class="space-y-4 sm:space-y-6 flex-grow">
+                                <li class="flex flex-col group">
+                                    <button class="flex items-start w-full text-left focus:outline-none" onclick="toggleDropdown('step1')">
+                                        <div class="bg-blue-100 p-2 rounded-lg mr-3 sm:mr-4 group-hover:bg-blue-200 transition-colors relative">
+                                            <span class="text-blue-600 text-lg sm:text-xl font-bold">1</span>
+                                        </div>
+                                        <div class="flex-1">
+                                            <span class="text-gray-600 text-base sm:text-lg group-hover:text-gray-800 transition-colors">Access the Online Student Portal</span>
+                                            <i class="fas fa-chevron-down ml-2 text-blue-600 transition-transform duration-300" id="step1-icon"></i>
+                                        </div>
+                                    </button>
+                                    <div id="step1-content" class="hidden pl-12 mt-2 space-y-3">
+                                        <p class="text-gray-600 text-sm">1. Go to <a href="https://rams.apc.edu.ph" class="text-blue-600 hover:underline">rams.apc.edu.ph</a></p>
+                                        <p class="text-gray-600 text-sm">2. Enter your student ID and password</p>
+                                        <p class="text-gray-600 text-sm">3. Click "Login" to access your student dashboard</p>
                                     </div>
-                                    <span class="text-gray-600 text-base sm:text-lg group-hover:text-gray-800 transition-colors">Complete the online registration form with your personal and academic information</span>
                                 </li>
-                                <li class="flex items-start group">
-                                    <div class="bg-blue-100 p-2 rounded-lg mr-3 sm:mr-4 group-hover:bg-blue-200 transition-colors">
-                                        <i class="fas fa-check-circle text-blue-600 text-lg sm:text-xl"></i>
+                                <li class="flex flex-col group">
+                                    <button class="flex items-start w-full text-left focus:outline-none" onclick="toggleDropdown('step2')">
+                                        <div class="bg-blue-100 p-2 rounded-lg mr-3 sm:mr-4 group-hover:bg-blue-200 transition-colors relative">
+                                            <span class="text-blue-600 text-lg sm:text-xl font-bold">2</span>
+                                        </div>
+                                        <div class="flex-1">
+                                            <span class="text-gray-600 text-base sm:text-lg group-hover:text-gray-800 transition-colors">Select your courses and preferred schedule</span>
+                                            <i class="fas fa-chevron-down ml-2 text-blue-600 transition-transform duration-300" id="step2-icon"></i>
+                                        </div>
+                                    </button>
+                                    <div id="step2-content" class="hidden pl-12 mt-2 space-y-3">
+                                        <p class="text-gray-600 text-sm">1. Navigate to "Course Registration" section</p>
+                                        <p class="text-gray-600 text-sm">2. Review available courses for your program</p>
+                                        <p class="text-gray-600 text-sm">3. Select your preferred class schedules</p>
+                                        <p class="text-gray-600 text-sm">4. Save your selections</p>
                                     </div>
-                                    <span class="text-gray-600 text-base sm:text-lg group-hover:text-gray-800 transition-colors">Select your desired courses and preferred schedule</span>
                                 </li>
-                                <li class="flex items-start group">
-                                    <div class="bg-blue-100 p-2 rounded-lg mr-3 sm:mr-4 group-hover:bg-blue-200 transition-colors">
-                                        <i class="fas fa-check-circle text-blue-600 text-lg sm:text-xl"></i>
+                                <li class="flex flex-col group">
+                                    <button class="flex items-start w-full text-left focus:outline-none" onclick="toggleDropdown('step3')">
+                                        <div class="bg-blue-100 p-2 rounded-lg mr-3 sm:mr-4 group-hover:bg-blue-200 transition-colors relative">
+                                            <span class="text-blue-600 text-lg sm:text-xl font-bold">3</span>
+                                        </div>
+                                        <div class="flex-1">
+                                            <span class="text-gray-600 text-base sm:text-lg group-hover:text-gray-800 transition-colors">Submit documents and pay registration fees</span>
+                                            <i class="fas fa-chevron-down ml-2 text-blue-600 transition-transform duration-300" id="step3-icon"></i>
+                                        </div>
+                                    </button>
+                                    <div id="step3-content" class="hidden pl-12 mt-2 space-y-3">
+                                        <p class="text-gray-600 text-sm">1. Upload required documents:</p>
+                                        <ul class="list-disc pl-5 text-gray-600 text-sm">
+                                            <li>Registration Form</li>
+                                            <li>Previous Term Grades</li>
+                                            <li>Clearance Form</li>
+                                        </ul>
+                                        <p class="text-gray-600 text-sm">2. Proceed to payment section</p>
+                                        <p class="text-gray-600 text-sm">3. Choose payment method</p>
+                                        <p class="text-gray-600 text-sm">4. Complete the payment process</p>
                                     </div>
-                                    <span class="text-gray-600 text-base sm:text-lg group-hover:text-gray-800 transition-colors">Submit required documents and pay registration fees</span>
                                 </li>
                             </ul>
                         </div>
-                        <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 shadow-xl border border-blue-100/50 transform hover:scale-[1.02] transition-all duration-300">
+                        <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-6 sm:p-8 shadow-xl border border-blue-100/50 transform hover:scale-[1.02] transition-all duration-300 min-h-[400px] flex flex-col">
                             <h3 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-4 sm:mb-6 flex items-center">
                                 <i class="fas fa-calendar-alt text-blue-600 mr-3"></i>
                                 Important Dates
                             </h3>
-                            <ul class="space-y-4 sm:space-y-6">
+                            <ul class="space-y-4 sm:space-y-6 flex-grow">
                                 <li class="flex items-start group">
                                     <div class="bg-blue-100 p-2 rounded-lg mr-3 sm:mr-4 group-hover:bg-blue-200 transition-colors">
                                         <i class="fas fa-calendar text-blue-600 text-lg sm:text-xl"></i>
@@ -1328,6 +1365,43 @@
                 }, 300);
             }
         }
+
+        // Add this to your existing script section
+        function toggleDropdown(stepId) {
+            const content = document.getElementById(`${stepId}-content`);
+            const icon = document.getElementById(`${stepId}-icon`);
+            const card = content.closest('.bg-white\\/80');
+            
+            // Toggle content visibility with animation
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                content.style.maxHeight = '0';
+                content.style.opacity = '0';
+                
+                // Animate opening
+                requestAnimationFrame(() => {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    content.style.opacity = '1';
+                    icon.style.transform = 'rotate(180deg)';
+                });
+            } else {
+                // Animate closing
+                content.style.maxHeight = '0';
+                content.style.opacity = '0';
+                icon.style.transform = 'rotate(0deg)';
+                
+                // Reset after animation
+                setTimeout(() => {
+                    content.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        // Add smooth transitions to content
+        document.querySelectorAll('[id$="-content"]').forEach(content => {
+            content.style.transition = 'all 0.3s ease-in-out';
+            content.style.overflow = 'hidden';
+        });
     </script>
 </body>
 </html> 

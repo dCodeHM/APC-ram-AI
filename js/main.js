@@ -2,8 +2,6 @@
 const chatContainer = document.getElementById('chat-container');
 const userInput = document.getElementById('user-input');
 const sendButton = document.getElementById('send-button');
-const mobileMenuButton = document.getElementById('mobile-menu-button');
-const mobileMenu = document.getElementById('mobile-menu');
 const quickActionButtons = document.querySelectorAll('.grid button');
 const signInButton = document.querySelector('nav button');
 const getStartedButton = document.querySelector('.hero-section button');
@@ -23,30 +21,6 @@ sendButton.addEventListener('click', handleUserMessage);
 userInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         handleUserMessage();
-    }
-});
-
-// Mobile menu functionality
-mobileMenuButton.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-    // Update aria-expanded attribute
-    const isExpanded = !mobileMenu.classList.contains('hidden');
-    mobileMenuButton.setAttribute('aria-expanded', isExpanded);
-});
-
-// Close mobile menu when clicking outside
-document.addEventListener('click', (e) => {
-    if (!mobileMenuButton.contains(e.target) && !mobileMenu.contains(e.target)) {
-        mobileMenu.classList.add('hidden');
-        mobileMenuButton.setAttribute('aria-expanded', 'false');
-    }
-});
-
-// Close mobile menu when window is resized to desktop view
-window.addEventListener('resize', () => {
-    if (window.innerWidth >= 640) { // sm breakpoint
-        mobileMenu.classList.add('hidden');
-        mobileMenuButton.setAttribute('aria-expanded', 'false');
     }
 });
 
@@ -181,9 +155,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 behavior: 'smooth',
                 block: 'start'
             });
-            // Close mobile menu after clicking a link
-            mobileMenu.classList.add('hidden');
-            mobileMenuButton.setAttribute('aria-expanded', 'false');
         }
     });
 });

@@ -341,53 +341,89 @@
 <body class="bg-gradient-to-br from-blue-50 to-indigo-50"> 
     <!-- Navigation -->
     <nav class="bg-white/80 backdrop-blur-md shadow-lg sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
+        <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
+            <div class="flex justify-between h-14 sm:h-16">
+                <!-- Logo and Title -->
                 <div class="flex items-center">
-                    <div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 mr-3">
+                    <div class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full overflow-hidden flex-shrink-0 mr-2">
                         <img src="/image/APC-Gold_Site-Seal.png" alt="APC Seal" class="w-full h-full object-contain">
                     </div>
-                    <h1 class="text-xl sm:text-2xl font-bold text-[#e7af41]">Asia Pacific College</h1>
+                    <h1 class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-[#e7af41]">Asia Pacific College</h1>
                 </div>
-                <!-- Mobile menu button -->
-                <div class="flex items-center sm:hidden">
-                    <button id="mobile-menu-button" class="text-gray-600 hover:text-[#e7af41] focus:outline-none" aria-label="Toggle mobile menu">
-                        <i class="fas fa-bars text-2xl"></i>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex items-center md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-[#e7af41] focus:outline-none p-2" aria-label="Toggle mobile menu">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
                     </button>
                 </div>
-                <!-- Desktop menu navigation bar-->
-                <div class="hidden sm:flex items-center space-x-6">
-                    <a href="https://www.apc.edu.ph/" class="nav-link relative px-3 py-2 text-gray-700 hover:text-[#e7af41] font-semibold text-sm uppercase tracking-wider transition-colors duration-300 group">
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-2 lg:space-x-4">
+                    <a href="https://www.apc.edu.ph/" class="nav-link relative px-2 py-2 text-gray-700 hover:text-[#e7af41] font-semibold text-sm uppercase tracking-wider transition-colors duration-300 group">
                         Home
                         <span class="absolute bottom-0 left-0 w-full h-0.5 bg-[#e7af41] transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
                     </a>
-                    <a href="#aboutUsToggle" class="nav-link relative px-3 py-2 text-gray-700 hover:text-[#e7af41] font-semibold text-sm uppercase tracking-wider transition-colors duration-300 group" id="navAboutUs">
+                    <a href="#aboutUsToggle" class="nav-link relative px-2 py-2 text-gray-700 hover:text-[#e7af41] font-semibold text-sm uppercase tracking-wider transition-colors duration-300 group" id="navAboutUs">
                         Our Team
                         <span class="absolute bottom-0 left-0 w-full h-0.5 bg-[#e7af41] transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
                     </a>
-                    <a href="#services" class="nav-link relative px-3 py-2 text-gray-700 hover:text-[#e7af41] font-semibold text-sm uppercase tracking-wider transition-colors duration-300 group" id="navServices">
+                    <a href="#services" class="nav-link relative px-2 py-2 text-gray-700 hover:text-[#e7af41] font-semibold text-sm uppercase tracking-wider transition-colors duration-300 group" id="navServices">
                         Services
                         <span class="absolute bottom-0 left-0 w-full h-0.5 bg-[#e7af41] transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
                     </a>
-                    <a href="https://www.apc.edu.ph/calendar/" class="nav-link relative px-3 py-2 text-gray-700 hover:text-[#e7af41] font-semibold text-sm uppercase tracking-wider transition-colors duration-300 group">
+                    <a href="https://www.apc.edu.ph/calendar/" class="nav-link relative px-2 py-2 text-gray-700 hover:text-[#e7af41] font-semibold text-sm uppercase tracking-wider transition-colors duration-300 group">
                         Calendar
                         <span class="absolute bottom-0 left-0 w-full h-0.5 bg-[#e7af41] transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100"></span>
                     </a>
                 </div>
             </div>
-            <!-- Mobile menu -->
-            <div id="mobile-menu" class="hidden sm:hidden pb-4">
-                <div class="flex flex-col space-y-4">
-                    <a href="#" class="text-gray-600 hover:text-[#e7af41] transition-colors">Home</a>
-                    <a href="#" class="text-gray-600 hover:text-[#e7af41] transition-colors">Services</a>
-                    <a href="#" class="text-gray-600 hover:text-[#e7af41] transition-colors">Contact</a>
-                    <button class="bg-[#e7af41] text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors w-full">
-                        Sign In
-                    </button>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden absolute top-14 sm:top-16 left-0 right-0 bg-white/95 backdrop-blur-md shadow-lg transform transition-all duration-300 ease-in-out">
+                <div class="px-2 py-1 space-y-0.5">
+                    <a href="https://www.apc.edu.ph/" class="block px-3 py-2 text-gray-700 hover:text-[#e7af41] font-semibold text-sm uppercase tracking-wider transition-colors duration-300 hover:bg-gray-50">
+                        Home
+                    </a>
+                    <a href="#aboutUsToggle" class="block px-3 py-2 text-gray-700 hover:text-[#e7af41] font-semibold text-sm uppercase tracking-wider transition-colors duration-300 hover:bg-gray-50" id="mobileNavAboutUs">
+                        Our Team
+                    </a>
+                    <a href="#services" class="block px-3 py-2 text-gray-700 hover:text-[#e7af41] font-semibold text-sm uppercase tracking-wider transition-colors duration-300 hover:bg-gray-50" id="mobileNavServices">
+                        Services
+                    </a>
+                    <a href="https://www.apc.edu.ph/calendar/" class="block px-3 py-2 text-gray-700 hover:text-[#e7af41] font-semibold text-sm uppercase tracking-wider transition-colors duration-300 hover:bg-gray-50">
+                        Calendar
+                    </a>
                 </div>
             </div>
         </div>
     </nav>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Close mobile menu when window is resized to desktop view
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) { // md breakpoint
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
 
     <!-- Hero Section -->
     <div class="relative text-white overflow-hidden">
@@ -510,10 +546,10 @@
                 </div>
 
                 <!-- Navigation Buttons -->
-                <button id="prevBtn" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-[#e7af41] transition-colors z-20" aria-label="Previous card">
+                <button id="prevBtn" class="absolute lBeft-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/100 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-[#e7af41] transition-colors z-20" aria-label="Previous card">
                     <i class="fas fa-chevron-left"></i>
                 </button>
-                <button id="nextBtn" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-[#e7af41] transition-colors z-20" aria-label="Next card">
+                <button id="nextBtn" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/100 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-[#e7af41] transition-colors z-20" aria-label="Next card">
                     <i class="fas fa-chevron-right"></i>
                 </button>
 

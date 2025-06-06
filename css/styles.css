@@ -342,8 +342,14 @@ html {
 
 /* Enhanced Carousel Container */
 #carousel {
-    perspective: 1200px;
-    transform-style: preserve-3d;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 1rem;
 }
 
 /* Carousel Card Base Styles */
@@ -351,18 +357,17 @@ html {
     position: absolute;
     top: 50%;
     left: 50%;
-    max-width: 350px;
-    width: 90%;
-    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                filter 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    width: 85%;
+    max-width: 320px;
+    transform-origin: center center;
+    transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     will-change: transform, opacity, filter;
     cursor: pointer;
 }
 
 /* Card positioning - side by side layout */
 .carousel-card[data-index="0"] {
-    transform: translate(-50%, -50%) translateX(-400px) scale(0.8);
+    transform: translate(-50%, -50%) translateX(-120%) scale(0.8);
     opacity: 0.6;
     z-index: 20;
     filter: brightness(0.9);
@@ -376,7 +381,7 @@ html {
 }
 
 .carousel-card[data-index="2"] {
-    transform: translate(-50%, -50%) translateX(400px) scale(0.8);
+    transform: translate(-50%, -50%) translateX(120%) scale(0.8);
     opacity: 0.6;
     z-index: 20;
     filter: brightness(0.9);
@@ -392,7 +397,7 @@ html {
 
 /* Left card */
 .carousel-card.left {
-    transform: translate(-50%, -50%) translateX(-400px) scale(0.8) !important;
+    transform: translate(-50%, -50%) translateX(-120%) scale(0.8) !important;
     opacity: 0.6 !important;
     z-index: 20 !important;
     filter: brightness(0.9) !important;
@@ -400,7 +405,7 @@ html {
 
 /* Right card */
 .carousel-card.right {
-    transform: translate(-50%, -50%) translateX(400px) scale(0.8) !important;
+    transform: translate(-50%, -50%) translateX(120%) scale(0.8) !important;
     opacity: 0.6 !important;
     z-index: 20 !important;
     filter: brightness(0.9) !important;
@@ -414,157 +419,163 @@ html {
     pointer-events: none !important;
 }
 
-/* Remove all hover effects from carousel cards */
-.carousel-card:hover {
-    /* No hover effects */
-}
-
-.carousel-card:hover .bg-white\/95 {
-    /* No background or shadow changes on hover */
-}
-
-/* Card backgrounds without hover effects */
-.bg-white\/95 {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-/* Navigation buttons - keep only necessary hover effects */
+/* Navigation buttons */
 #prevBtn, #nextBtn {
-    transition: all 0.3s ease;
-    z-index: 50;
-}
-
-#prevBtn:hover, #nextBtn:hover {
-    transform: translateY(-50%) scale(1.1);
-    /* Remove background changes */
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-}
-
-#prevBtn:hover .fas {
-    transform: translateX(-2px);
-}
-
-#nextBtn:hover .fas {
-    transform: translateX(2px);
-}
-
-/* Indicators without background hover effects */
-.carousel-indicator {
-    width: 12px;
-    height: 12px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2.5rem;
+    height: 2.5rem;
+    background: rgba(255, 255, 255, 0.9);
     border-radius: 50%;
-    border: none;
-    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    z-index: 40;
+    transition: all 0.3s ease;
 }
 
-.carousel-indicator:hover {
-    transform: scale(1.3);
-    /* No background changes */
+#prevBtn {
+    left: 0.5rem;
 }
 
-/* Remove all content hover effects */
-.carousel-card:hover .fas {
-    /* No changes */
-}
-
-.carousel-card:hover button {
-    /* No changes */
-}
-
-.carousel-card .group:hover {
-    /* No group hover effects */
-}
-
-/* Remove Tailwind group hover effects */
-.group:hover .group-hover\:scale-110 {
-    transform: none !important;
-}
-
-.group:hover .group-hover\:rotate-3 {
-    transform: none !important;
-}
-
-.group:hover .group-hover\:translate-x-2 {
-    transform: none !important;
-}
-
-.group:hover .group-hover\:text-blue-800 {
-    color: inherit !important;
-}
-
-.group:hover .group-hover\:text-green-800 {
-    color: inherit !important;
-}
-
-.group:hover .group-hover\:text-purple-800 {
-    color: inherit !important;
-}
-
-/* Carousel state classes */
-.carousel-active {
-    /* Active center card */
-}
-
-.carousel-left {
-    /* Left side card */
-}
-
-.carousel-right {
-    /* Right side card */
-}
-
-.carousel-hidden {
-    /* Hidden/off-screen card */
-}
-
-/* Debug styles (remove in production) */
-.carousel-card.carousel-active {
-    border: 2px solid #2563eb;
+#nextBtn {
+    right: 0.5rem;
 }
 
 /* Responsive Design */
-@media (max-width: 1024px) {
+@media (min-width: 640px) {
     .carousel-card {
-        max-width: 300px;
+        width: 80%;
+        max-width: 360px;
     }
     
     #prevBtn, #nextBtn {
-        width: 48px;
-        height: 48px;
+        width: 3rem;
+        height: 3rem;
     }
     
     #prevBtn {
-        left: 8px;
+        left: 1rem;
     }
     
     #nextBtn {
-        right: 8px;
+        right: 1rem;
     }
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     .carousel-card {
-        max-width: 280px;
+        width: 75%;
+        max-width: 400px;
+    }
+    
+    .carousel-card[data-index="0"] {
+        transform: translate(-50%, -50%) translateX(-110%) scale(0.8);
+    }
+    
+    .carousel-card[data-index="2"] {
+        transform: translate(-50%, -50%) translateX(110%) scale(0.8);
+    }
+    
+    .carousel-card.left {
+        transform: translate(-50%, -50%) translateX(-110%) scale(0.8) !important;
+    }
+    
+    .carousel-card.right {
+        transform: translate(-50%, -50%) translateX(110%) scale(0.8) !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    .carousel-card {
+        width: 70%;
+        max-width: 450px;
+    }
+    
+    .carousel-card[data-index="0"] {
+        transform: translate(-50%, -50%) translateX(-100%) scale(0.8);
+    }
+    
+    .carousel-card[data-index="2"] {
+        transform: translate(-50%, -50%) translateX(100%) scale(0.8);
+    }
+    
+    .carousel-card.left {
+        transform: translate(-50%, -50%) translateX(-100%) scale(0.8) !important;
+    }
+    
+    .carousel-card.right {
+        transform: translate(-50%, -50%) translateX(100%) scale(0.8) !important;
     }
     
     #prevBtn, #nextBtn {
-        width: 48px;
-        height: 48px;
+        width: 3.5rem;
+        height: 3.5rem;
+    }
+    
+    #prevBtn {
+        left: 1.5rem;
+    }
+    
+    #nextBtn {
+        right: 1.5rem;
     }
 }
 
+/* Card content styles */
+.carousel-card .bg-white\/95 {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+@media (min-width: 640px) {
+    .carousel-card .bg-white\/95 {
+        padding: 1.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .carousel-card .bg-white\/95 {
+        padding: 2rem;
+    }
+}
+
+/* Indicators */
+.carousel-indicator {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background-color: #e5e7eb;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.carousel-indicator.active {
+    background-color: #2563eb;
+    transform: scale(1.2);
+}
+
+/* Container height adjustments */
 @media (max-width: 640px) {
-    .carousel-card {
-        max-width: 260px;
+    .carousel-container {
+        height: 400px;
     }
-    
-    #prevBtn, #nextBtn {
-        width: 40px;
-        height: 40px;
+}
+
+@media (min-width: 641px) and (max-width: 1023px) {
+    .carousel-container {
+        height: 450px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .carousel-container {
+        height: 500px;
     }
 }
 

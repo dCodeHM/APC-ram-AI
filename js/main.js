@@ -243,7 +243,7 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// Carousel functionality - jQuery implementation without hover
+// Carousel functionality
 let currentSlide = 0;
 let isTransitioning = false;
 
@@ -259,8 +259,6 @@ function initializeCarousel() {
         console.log('Carousel elements not found');
         return;
     }
-
-    console.log('Initializing jQuery carousel with', totalCards, 'cards');
 
     // Update carousel display
     function updateCarousel() {
@@ -290,30 +288,27 @@ function initializeCarousel() {
                     'opacity': '1',
                     'z-index': '30',
                     'filter': 'brightness(1)',
-                    'pointer-events': 'auto',
-                    'cursor': 'default'
+                    'pointer-events': 'auto'
                 });
             } else if (position === -1) {
                 // Left card
                 $card.addClass('carousel-left');
                 $card.css({
-                    'transform': 'translate(-50%, -50%) translateX(-400px) scale(0.8)',
+                    'transform': 'translate(-50%, -50%) translateX(-100%) scale(0.8)',
                     'opacity': '0.6',
                     'z-index': '20',
                     'filter': 'brightness(0.9)',
-                    'pointer-events': 'auto',
-                    'cursor': 'pointer'
+                    'pointer-events': 'auto'
                 });
             } else if (position === 1) {
                 // Right card
                 $card.addClass('carousel-right');
                 $card.css({
-                    'transform': 'translate(-50%, -50%) translateX(400px) scale(0.8)',
+                    'transform': 'translate(-50%, -50%) translateX(100%) scale(0.8)',
                     'opacity': '0.6',
                     'z-index': '20',
                     'filter': 'brightness(0.9)',
-                    'pointer-events': 'auto',
-                    'cursor': 'pointer'
+                    'pointer-events': 'auto'
                 });
             } else {
                 // Hidden card
@@ -323,8 +318,7 @@ function initializeCarousel() {
                     'opacity': '0',
                     'z-index': '10',
                     'filter': 'brightness(0.7)',
-                    'pointer-events': 'none',
-                    'cursor': 'default'
+                    'pointer-events': 'none'
                 });
             }
         });
@@ -347,44 +341,37 @@ function initializeCarousel() {
         setTimeout(() => {
             isTransitioning = false;
         }, 700);
-
-        console.log('Carousel updated - Current slide:', currentSlide);
     }
 
     // Navigation functions
     function nextSlide() {
         if (isTransitioning) return;
-        console.log('Next slide triggered');
         currentSlide = (currentSlide + 1) % totalCards;
         updateCarousel();
     }
 
     function prevSlide() {
         if (isTransitioning) return;
-        console.log('Previous slide triggered');
         currentSlide = (currentSlide - 1 + totalCards) % totalCards;
         updateCarousel();
     }
 
     function goToSlide(index) {
         if (isTransitioning || index === currentSlide) return;
-        console.log('Going to slide:', index);
         currentSlide = index;
         updateCarousel();
     }
 
-    // Event listeners using jQuery
+    // Event listeners
     $prevBtn.off('click').on('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
-        console.log('Previous button clicked');
         prevSlide();
     });
 
     $nextBtn.off('click').on('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
-        console.log('Next button clicked');
         nextSlide();
     });
 
@@ -393,14 +380,12 @@ function initializeCarousel() {
         e.preventDefault();
         e.stopPropagation();
         const index = parseInt($(this).attr('data-index'));
-        console.log('Indicator clicked:', index);
         goToSlide(index);
     });
 
     // Card clicks - move clicked card to center
     $carouselCards.off('click').on('click', function(e) {
         const cardIndex = parseInt($(this).attr('data-index'));
-        console.log('Card clicked:', cardIndex, 'Current center:', currentSlide);
         
         // Only move to center if it's not already the center card
         if (cardIndex !== currentSlide) {
@@ -410,48 +395,23 @@ function initializeCarousel() {
         }
     });
 
-    // Keyboard navigation
-    $(document).off('keydown.carousel').on('keydown.carousel', function(e) {
-        if ($('input:focus, textarea:focus').length === 0) {
-            if (e.key === 'ArrowLeft') {
-                e.preventDefault();
-                prevSlide();
-            } else if (e.key === 'ArrowRight') {
-                e.preventDefault();
-                nextSlide();
-            }
-        }
-    });
-
-    // Touch/swipe support
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    $carousel.off('touchstart touchend').on('touchstart', function(e) {
-        touchStartX = e.originalEvent.changedTouches[0].screenX;
-    }).on('touchend', function(e) {
-        touchEndX = e.originalEvent.changedTouches[0].screenX;
-        const difference = touchStartX - touchEndX;
-        
-        if (Math.abs(difference) > 50) {
-            if (difference > 0) {
-                nextSlide();
-            } else {
-                prevSlide();
-            }
-        }
-    });
-
-    // Auto-advance without hover controls
-    let autoAdvanceInterval = setInterval(nextSlide, 8000);
-
     // Initialize carousel
     updateCarousel();
-    
-    console.log('jQuery Carousel initialized successfully');
+
+    // Auto-advance carousel every 5 seconds
+    let autoAdvance = setInterval(nextSlide, 5000);
+
+    // Pause auto-advance on hover
+    $carousel.on('mouseenter', () => {
+        clearInterval(autoAdvance);
+    });
+
+    $carousel.on('mouseleave', () => {
+        autoAdvance = setInterval(nextSlide, 5000);
+    });
 }
 
-// Initialize when document is ready
+// Initialize carousel when document is ready
 $(document).ready(function() {
     initializeCarousel();
     

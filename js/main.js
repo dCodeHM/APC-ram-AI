@@ -248,6 +248,7 @@ let currentSlide = 0;
 let isTransitioning = false;
 let touchStartX = 0;
 let touchEndX = 0;
+let isMobile = window.innerWidth <= 700;
 
 function initializeCarousel() {
     const $carousel = $('#carousel');
@@ -267,77 +268,92 @@ function initializeCarousel() {
         if (isTransitioning) return;
         isTransitioning = true;
 
-        $carouselCards.each(function(index) {
-            const $card = $(this);
-            const cardIndex = parseInt($card.attr('data-index'));
-            
-            // Calculate position relative to current slide
-            let position = cardIndex - currentSlide;
-            
-            // Handle wrapping
-            if (position > 1) position -= totalCards;
-            if (position < -1) position += totalCards;
-            
-            // Remove all position classes
-            $card.removeClass('carousel-active carousel-left carousel-right carousel-hidden');
-            
-            // Apply position and styling based on position
-            if (position === 0) {
-                // Center card (active)
-                $card.addClass('carousel-active');
+        if (isMobile) {
+            // Mobile view - box layout
+            $carouselCards.each(function(index) {
+                const $card = $(this);
                 $card.css({
-                    'transform': 'translate(-50%, -50%) translateX(0) scale(1)',
+                    'position': 'relative',
+                    'top': '0',
+                    'left': '0',
+                    'width': '100%',
+                    'max-width': 'none',
+                    'transform': 'none',
                     'opacity': '1',
-                    'z-index': '30',
-                    'filter': 'brightness(1)',
-                    'pointer-events': 'auto'
+                    'filter': 'none',
+                    'margin-bottom': '1rem'
                 });
-            } else if (position === -1) {
-                // Left card
-                $card.addClass('carousel-left');
-                $card.css({
-                    'transform': 'translate(-50%, -50%) translateX(-100%) scale(0.8)',
-                    'opacity': '0.6',
-                    'z-index': '20',
-                    'filter': 'brightness(0.9)',
-                    'pointer-events': 'auto'
-                });
-            } else if (position === 1) {
-                // Right card
-                $card.addClass('carousel-right');
-                $card.css({
-                    'transform': 'translate(-50%, -50%) translateX(100%) scale(0.8)',
-                    'opacity': '0.6',
-                    'z-index': '20',
-                    'filter': 'brightness(0.9)',
-                    'pointer-events': 'auto'
-                });
-            } else {
-                // Hidden card
-                $card.addClass('carousel-hidden');
-                $card.css({
-                    'transform': 'translate(-50%, -50%) translateX(0) scale(0.6)',
-                    'opacity': '0',
-                    'z-index': '10',
-                    'filter': 'brightness(0.7)',
-                    'pointer-events': 'none'
-                });
-            }
-        });
+            });
 
-        // Update indicators
-        $indicators.each(function(index) {
-            const $indicator = $(this);
-            $indicator.removeClass('bg-blue-600 bg-blue-200');
-            
-            if (index === currentSlide) {
-                $indicator.addClass('bg-blue-600');
-                $indicator.css('transform', 'scale(1.3)');
-            } else {
-                $indicator.addClass('bg-blue-200');
-                $indicator.css('transform', 'scale(1)');
-            }
-        });
+            // Hide navigation elements
+            $prevBtn.hide();
+            $nextBtn.hide();
+            $('.carousel-indicator').hide();
+        } else {
+            // Desktop view - carousel
+            $carouselCards.each(function(index) {
+                const $card = $(this);
+                const cardIndex = parseInt($card.attr('data-index'));
+                
+                // Calculate position relative to current slide
+                let position = cardIndex - currentSlide;
+                
+                // Handle wrapping
+                if (position > 1) position -= totalCards;
+                if (position < -1) position += totalCards;
+                
+                // Remove all position classes
+                $card.removeClass('carousel-active carousel-left carousel-right carousel-hidden');
+                
+                // Apply position and styling based on position
+                if (position === 0) {
+                    // Center card (active)
+                    $card.addClass('carousel-active');
+                    $card.css({
+                        'transform': 'translate(-50%, -50%) translateX(0) scale(1)',
+                        'opacity': '1',
+                        'z-index': '30',
+                        'filter': 'brightness(1)',
+                        'pointer-events': 'auto'
+                    });
+                } else if (position === -1) {
+                    // Left card
+                    $card.addClass('carousel-left');
+                    $card.css({
+                        'transform': 'translate(-50%, -50%) translateX(-100%) scale(0.8)',
+                        'opacity': '0.6',
+                        'z-index': '20',
+                        'filter': 'brightness(0.9)',
+                        'pointer-events': 'auto'
+                    });
+                } else if (position === 1) {
+                    // Right card
+                    $card.addClass('carousel-right');
+                    $card.css({
+                        'transform': 'translate(-50%, -50%) translateX(100%) scale(0.8)',
+                        'opacity': '0.6',
+                        'z-index': '20',
+                        'filter': 'brightness(0.9)',
+                        'pointer-events': 'auto'
+                    });
+                } else {
+                    // Hidden card
+                    $card.addClass('carousel-hidden');
+                    $card.css({
+                        'transform': 'translate(-50%, -50%) translateX(0) scale(0.6)',
+                        'opacity': '0',
+                        'z-index': '10',
+                        'filter': 'brightness(0.7)',
+                        'pointer-events': 'none'
+                    });
+                }
+            });
+
+            // Show navigation elements
+            $prevBtn.show();
+            $nextBtn.show();
+            $('.carousel-indicator').show();
+        }
 
         // Reset transition flag
         setTimeout(() => {
@@ -347,13 +363,13 @@ function initializeCarousel() {
 
     // Navigation functions
     function nextSlide() {
-        if (isTransitioning) return;
+        if (isTransitioning || isMobile) return;
         currentSlide = (currentSlide + 1) % totalCards;
         updateCarousel();
     }
 
     function prevSlide() {
-        if (isTransitioning) return;
+        if (isTransitioning || isMobile) return;
         currentSlide = (currentSlide - 1 + totalCards) % totalCards;
         updateCarousel();
     }
@@ -362,30 +378,6 @@ function initializeCarousel() {
         if (isTransitioning || index === currentSlide) return;
         currentSlide = index;
         updateCarousel();
-    }
-
-    // Touch event handlers
-    function handleTouchStart(e) {
-        touchStartX = e.originalEvent.touches[0].clientX;
-    }
-
-    function handleTouchMove(e) {
-        touchEndX = e.originalEvent.touches[0].clientX;
-    }
-
-    function handleTouchEnd() {
-        const swipeThreshold = 50;
-        const diff = touchStartX - touchEndX;
-
-        if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0) {
-                // Swipe left
-                nextSlide();
-            } else {
-                // Swipe right
-                prevSlide();
-            }
-        }
     }
 
     // Event listeners
@@ -401,38 +393,25 @@ function initializeCarousel() {
         nextSlide();
     });
 
-    // Touch event listeners
-    $carousel
-        .off('touchstart touchmove touchend')
-        .on('touchstart', handleTouchStart)
-        .on('touchmove', handleTouchMove)
-        .on('touchend', handleTouchEnd);
-
-    // Indicator clicks
-    $indicators.off('click').on('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        const index = parseInt($(this).attr('data-index'));
-        goToSlide(index);
-    });
-
-    // Card clicks - move clicked card to center
-    $carouselCards.off('click').on('click', function(e) {
-        const cardIndex = parseInt($(this).attr('data-index'));
-        
-        // Only move to center if it's not already the center card
-        if (cardIndex !== currentSlide) {
-            e.preventDefault();
-            e.stopPropagation();
-            goToSlide(cardIndex);
-        }
+    // Handle window resize
+    let resizeTimer;
+    $(window).on('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            isMobile = window.innerWidth <= 700;
+            updateCarousel();
+        }, 250);
     });
 
     // Initialize carousel
     updateCarousel();
 
-    // Auto-advance carousel every 5 seconds
-    let autoAdvance = setInterval(nextSlide, 5000);
+    // Auto-advance carousel (desktop only)
+    let autoAdvance = setInterval(function() {
+        if (!isMobile) {
+            nextSlide();
+        }
+    }, 5000);
 
     // Pause auto-advance on hover/touch
     $carousel.on('mouseenter touchstart', () => {
@@ -440,7 +419,9 @@ function initializeCarousel() {
     });
 
     $carousel.on('mouseleave touchend', () => {
-        autoAdvance = setInterval(nextSlide, 5000);
+        if (!isMobile) {
+            autoAdvance = setInterval(nextSlide, 5000);
+        }
     });
 }
 

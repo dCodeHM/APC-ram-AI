@@ -357,6 +357,37 @@
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: rgba(231, 175, 65, 0.5);
         }
+
+        /* About RAMSEY Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+
+        #aboutRamseyContent {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        #aboutRamseyContent.hidden {
+            animation: fadeOut 0.5s ease-out forwards;
+        }
     </style>
 
 </head>
@@ -1686,8 +1717,15 @@
             }
         }
 
-        aboutRamseyToggle.addEventListener('click', toggleAboutRamsey);
-        closeAboutRamsey.addEventListener('click', toggleAboutRamsey);
+        aboutRamseyToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleAboutRamsey();
+        });
+
+        closeAboutRamsey.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleAboutRamsey();
+        });
 
         // Close About RAMSEY when clicking outside
         document.addEventListener('click', (event) => {
@@ -1697,6 +1735,32 @@
                 toggleAboutRamsey();
             }
         });
+
+        // Remove duplicate chat toggle function
+        const originalToggleChat = window.toggleChat;
+        window.toggleChat = function() {
+            const chatWindow = document.getElementById('chatWindow');
+            const floatingLabel = document.getElementById('floatingLabel');
+            const chatButton = document.querySelector('.chat-button');
+            
+            if (!chatWindow.classList.contains('active')) {
+                chatWindow.style.display = 'block';
+                requestAnimationFrame(() => {
+                    chatWindow.classList.add('active');
+                    chatButton.classList.add('active');
+                    floatingLabel.classList.add('invisible');
+                });
+            } else {
+                chatWindow.classList.remove('active');
+                chatButton.classList.remove('active');
+                floatingLabel.classList.remove('invisible');
+                setTimeout(() => {
+                    if (!chatWindow.classList.contains('active')) {
+                        chatWindow.style.display = 'none';
+                    }
+                }, 300);
+            }
+        };
     </script>
     <script src="script.js"></script>
 </body>

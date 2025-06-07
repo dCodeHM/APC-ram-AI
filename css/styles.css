@@ -350,6 +350,7 @@ html {
     justify-content: center;
     overflow: hidden;
     padding: 1rem;
+    touch-action: pan-y pinch-zoom;
 }
 
 /* Carousel Card Base Styles */
@@ -357,12 +358,13 @@ html {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 85%;
+    width: 90%;
     max-width: 320px;
     transform-origin: center center;
-    transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     will-change: transform, opacity, filter;
     cursor: pointer;
+    touch-action: pan-y pinch-zoom;
 }
 
 /* Card positioning - side by side layout */
@@ -434,6 +436,7 @@ html {
     cursor: pointer;
     z-index: 40;
     transition: all 0.3s ease;
+    touch-action: manipulation;
 }
 
 #prevBtn {
@@ -444,84 +447,220 @@ html {
     right: 0.5rem;
 }
 
-/* Responsive Design */
-@media (min-width: 640px) {
-    .carousel-card {
-        width: 80%;
-        max-width: 360px;
+/* Small Screen Styles (800px and below) */
+@media (max-width: 800px) {
+    .carousel-container {
+        height: 400px;
     }
-    
-    #prevBtn, #nextBtn {
-        width: 3rem;
-        height: 3rem;
-    }
-    
-    #prevBtn {
-        left: 1rem;
-    }
-    
-    #nextBtn {
-        right: 1rem;
-    }
-}
 
-@media (min-width: 768px) {
     .carousel-card {
-        width: 75%;
-        max-width: 400px;
+        width: 95%;
+        max-width: 300px;
     }
-    
+
+    /* Adjust card positioning for better visibility */
     .carousel-card[data-index="0"] {
-        transform: translate(-50%, -50%) translateX(-110%) scale(0.8);
+        transform: translate(-50%, -50%) translateX(-105%) scale(0.85);
+        opacity: 0.7;
     }
-    
+
     .carousel-card[data-index="2"] {
-        transform: translate(-50%, -50%) translateX(110%) scale(0.8);
+        transform: translate(-50%, -50%) translateX(105%) scale(0.85);
+        opacity: 0.7;
     }
-    
+
     .carousel-card.left {
-        transform: translate(-50%, -50%) translateX(-110%) scale(0.8) !important;
+        transform: translate(-50%, -50%) translateX(-105%) scale(0.85) !important;
+        opacity: 0.7 !important;
     }
-    
+
     .carousel-card.right {
-        transform: translate(-50%, -50%) translateX(110%) scale(0.8) !important;
+        transform: translate(-50%, -50%) translateX(105%) scale(0.85) !important;
+        opacity: 0.7 !important;
+    }
+
+    /* Adjust card content for better readability */
+    .carousel-card .bg-white\/95 {
+        padding: 1rem;
+    }
+
+    .carousel-card h3 {
+        font-size: 1.1rem;
+        line-height: 1.3;
+    }
+
+    .carousel-card p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin-top: 0.5rem;
+    }
+
+    .carousel-card .w-8 {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .carousel-card .text-base {
+        font-size: 1rem;
+    }
+
+    /* Adjust navigation buttons */
+    #prevBtn, #nextBtn {
+        width: 2rem;
+        height: 2rem;
+        background: rgba(255, 255, 255, 0.95);
+    }
+
+    #prevBtn {
+        left: 0.25rem;
+    }
+
+    #nextBtn {
+        right: 0.25rem;
+    }
+
+    /* Adjust indicators */
+    .carousel-indicator {
+        width: 0.6rem;
+        height: 0.6rem;
+    }
+
+    /* Improve touch targets */
+    .carousel-card a {
+        padding: 0.75rem;
+        font-size: 0.9rem;
     }
 }
 
-@media (min-width: 1024px) {
+/* Extra Small Screen Styles (480px and below) */
+@media (max-width: 480px) {
+    .carousel-container {
+        height: 350px;
+    }
+
+    .carousel-card {
+        width: 98%;
+        max-width: 280px;
+    }
+
+    /* Further adjust card positioning */
+    .carousel-card[data-index="0"] {
+        transform: translate(-50%, -50%) translateX(-102%) scale(0.9);
+        opacity: 0.8;
+    }
+
+    .carousel-card[data-index="2"] {
+        transform: translate(-50%, -50%) translateX(102%) scale(0.9);
+        opacity: 0.8;
+    }
+
+    .carousel-card.left {
+        transform: translate(-50%, -50%) translateX(-102%) scale(0.9) !important;
+        opacity: 0.8 !important;
+    }
+
+    .carousel-card.right {
+        transform: translate(-50%, -50%) translateX(102%) scale(0.9) !important;
+        opacity: 0.8 !important;
+    }
+
+    /* Further adjust card content */
+    .carousel-card .bg-white\/95 {
+        padding: 0.75rem;
+    }
+
+    .carousel-card h3 {
+        font-size: 1rem;
+    }
+
+    .carousel-card p {
+        font-size: 0.85rem;
+    }
+
+    .carousel-card .w-8 {
+        width: 1.75rem;
+        height: 1.75rem;
+    }
+
+    /* Adjust navigation buttons */
+    #prevBtn, #nextBtn {
+        width: 1.75rem;
+        height: 1.75rem;
+    }
+
+    /* Adjust indicators */
+    .carousel-indicator {
+        width: 0.5rem;
+        height: 0.5rem;
+    }
+}
+
+/* Responsive Design for larger screens */
+@media (min-width: 801px) {
+    .carousel-container {
+        height: 450px;
+    }
+
     .carousel-card {
         width: 70%;
         max-width: 450px;
     }
-    
+
     .carousel-card[data-index="0"] {
         transform: translate(-50%, -50%) translateX(-100%) scale(0.8);
     }
-    
+
     .carousel-card[data-index="2"] {
         transform: translate(-50%, -50%) translateX(100%) scale(0.8);
     }
-    
+
     .carousel-card.left {
         transform: translate(-50%, -50%) translateX(-100%) scale(0.8) !important;
     }
-    
+
     .carousel-card.right {
         transform: translate(-50%, -50%) translateX(100%) scale(0.8) !important;
     }
-    
+
     #prevBtn, #nextBtn {
         width: 3.5rem;
         height: 3.5rem;
     }
-    
-    #prevBtn {
-        left: 1.5rem;
-    }
-    
-    #nextBtn {
-        right: 1.5rem;
-    }
+}
+
+/* Touch-friendly styles */
+.carousel-card {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.carousel-card:active {
+    transform: scale(0.98);
+}
+
+/* Improved accessibility */
+#prevBtn:focus-visible,
+#nextBtn:focus-visible,
+.carousel-indicator:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Smooth transitions for all transformable properties */
+.carousel-card {
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                z-index 0.5s step-end;
+}
+
+/* Remove perspective and 3D transforms for better performance */
+.perspective-1000 {
+    perspective: none;
+}
+
+.transform-style-3d {
+    transform-style: flat;
 }
 
 /* Card content styles */
@@ -530,19 +669,7 @@ html {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 1rem;
-}
-
-@media (min-width: 640px) {
-    .carousel-card .bg-white\/95 {
-        padding: 1.5rem;
-    }
-}
-
-@media (min-width: 768px) {
-    .carousel-card .bg-white\/95 {
-        padding: 2rem;
-    }
+    padding: 1.5rem;
 }
 
 /* Indicators */
@@ -553,30 +680,12 @@ html {
     background-color: #e5e7eb;
     transition: all 0.3s ease;
     cursor: pointer;
+    touch-action: manipulation;
 }
 
 .carousel-indicator.active {
     background-color: #2563eb;
     transform: scale(1.2);
-}
-
-/* Container height adjustments */
-@media (max-width: 640px) {
-    .carousel-container {
-        height: 400px;
-    }
-}
-
-@media (min-width: 641px) and (max-width: 1023px) {
-    .carousel-container {
-        height: 450px;
-    }
-}
-
-@media (min-width: 1024px) {
-    .carousel-container {
-        height: 500px;
-    }
 }
 
 /* Remove smooth transitions from backdrop elements */

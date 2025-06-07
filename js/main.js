@@ -246,6 +246,8 @@ document.addEventListener('click', (e) => {
 // Carousel functionality
 let currentSlide = 0;
 let isTransitioning = false;
+let touchStartX = 0;
+let touchEndX = 0;
 
 function initializeCarousel() {
     const $carousel = $('#carousel');
@@ -340,7 +342,7 @@ function initializeCarousel() {
         // Reset transition flag
         setTimeout(() => {
             isTransitioning = false;
-        }, 700);
+        }, 500);
     }
 
     // Navigation functions
@@ -362,6 +364,30 @@ function initializeCarousel() {
         updateCarousel();
     }
 
+    // Touch event handlers
+    function handleTouchStart(e) {
+        touchStartX = e.originalEvent.touches[0].clientX;
+    }
+
+    function handleTouchMove(e) {
+        touchEndX = e.originalEvent.touches[0].clientX;
+    }
+
+    function handleTouchEnd() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                // Swipe left
+                nextSlide();
+            } else {
+                // Swipe right
+                prevSlide();
+            }
+        }
+    }
+
     // Event listeners
     $prevBtn.off('click').on('click', function(e) {
         e.preventDefault();
@@ -374,6 +400,13 @@ function initializeCarousel() {
         e.stopPropagation();
         nextSlide();
     });
+
+    // Touch event listeners
+    $carousel
+        .off('touchstart touchmove touchend')
+        .on('touchstart', handleTouchStart)
+        .on('touchmove', handleTouchMove)
+        .on('touchend', handleTouchEnd);
 
     // Indicator clicks
     $indicators.off('click').on('click', function(e) {
@@ -401,12 +434,12 @@ function initializeCarousel() {
     // Auto-advance carousel every 5 seconds
     let autoAdvance = setInterval(nextSlide, 5000);
 
-    // Pause auto-advance on hover
-    $carousel.on('mouseenter', () => {
+    // Pause auto-advance on hover/touch
+    $carousel.on('mouseenter touchstart', () => {
         clearInterval(autoAdvance);
     });
 
-    $carousel.on('mouseleave', () => {
+    $carousel.on('mouseleave touchend', () => {
         autoAdvance = setInterval(nextSlide, 5000);
     });
 }

@@ -909,6 +909,7 @@ button[onclick^="toggleDropdown"]:focus-visible {
         opacity: 1 !important;
         filter: none !important;
         margin-bottom: 1rem;
+        cursor: pointer;
     }
 
     /* Hide navigation buttons and indicators for mobile */
@@ -922,11 +923,28 @@ button[onclick^="toggleDropdown"]:focus-visible {
         border-radius: 1rem;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    .carousel-card .bg-white\/95::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(96, 165, 250, 0.1));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 0;
     }
 
     .carousel-card .bg-white\/95:hover {
-        transform: translateY(-2px);
+        transform: translateY(-4px);
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .carousel-card .bg-white\/95:hover::before {
+        opacity: 1;
     }
 
     /* Card content layout */
@@ -934,6 +952,8 @@ button[onclick^="toggleDropdown"]:focus-visible {
         flex-direction: row;
         align-items: center;
         gap: 1rem;
+        position: relative;
+        z-index: 1;
     }
 
     .carousel-card .w-8,
@@ -942,6 +962,13 @@ button[onclick^="toggleDropdown"]:focus-visible {
         width: 3rem;
         height: 3rem;
         flex-shrink: 0;
+        transition: transform 0.3s ease;
+    }
+
+    .carousel-card:hover .w-8,
+    .carousel-card:hover .w-10,
+    .carousel-card:hover .w-12 {
+        transform: scale(1.1) rotate(5deg);
     }
 
     .carousel-card h3 {
@@ -949,6 +976,11 @@ button[onclick^="toggleDropdown"]:focus-visible {
         line-height: 1.4;
         margin: 0;
         color: #1F2937;
+        transition: color 0.3s ease;
+    }
+
+    .carousel-card:hover h3 {
+        color: #3b82f6;
     }
 
     .carousel-card p {
@@ -956,23 +988,17 @@ button[onclick^="toggleDropdown"]:focus-visible {
         line-height: 1.5;
         margin: 0.75rem 0;
         color: #4B5563;
+        transition: color 0.3s ease;
     }
 
-    /* Card action button */
-    .carousel-card a {
-        display: block;
-        width: 100%;
-        padding: 0.75rem;
-        text-align: center;
-        border-radius: 0.5rem;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        margin-top: 0.75rem;
+    .carousel-card:hover p {
+        color: #334155;
     }
 
-    .carousel-card a:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    /* Hide the original button */
+    .carousel-card .mt-3,
+    .carousel-card .mt-4 {
+        display: none;
     }
 
     /* Card animations */
@@ -994,14 +1020,6 @@ button[onclick^="toggleDropdown"]:focus-visible {
     /* Card spacing */
     .carousel-card .flex-col {
         gap: 0.75rem;
-    }
-
-    .carousel-card .mt-3 {
-        margin-top: 0.75rem;
-    }
-
-    .carousel-card .mt-4 {
-        margin-top: 1rem;
     }
 }
 

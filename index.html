@@ -904,37 +904,88 @@
                                     </div>
                                 </li>
                                 <li class="flex flex-col group">
-                                    <button class="flex items-start w-full text-left focus:outline-none" onclick="toggleDropdown('computer-labs')">
+                                    <button class="flex items-start w-full text-left focus:outline-none" onclick="toggleDropdown('ai-hub')">
                                         <div class="bg-purple-100 p-2 rounded-lg mr-3 sm:mr-4 group-hover:bg-purple-200 transition-colors relative">
-                                            <i class="fas fa-laptop text-purple-600 text-lg sm:text-xl"></i>
+                                            <i class="fas fa-robot text-purple-600 text-lg sm:text-xl"></i>
                                         </div>
                                         <div class="flex-1">
-                                            <span class="text-gray-600 text-base sm:text-lg group-hover:text-gray-800 transition-colors">Computer Laboratories</span>
-                                            <i class="fas fa-chevron-down ml-2 text-purple-600 transition-transform duration-300" id="computer-labs-icon"></i>
+                                            <span class="text-gray-600 text-base sm:text-lg group-hover:text-gray-800 transition-colors">AI Hub Room</span>
+                                            <i class="fas fa-chevron-down ml-2 text-purple-600 transition-transform duration-300" id="ai-hub-icon"></i>
                                         </div>
                                     </button>
-                                    <div id="computer-labs-content" class="hidden pl-12 mt-2 space-y-3">
-                                        <p class="text-gray-600 text-sm"><strong>Features:</strong> High-Tech Learning Environment</p>
-                                        <p class="text-gray-600 text-sm"><strong>Equipment:</strong> Latest Intel and AMD processors, high-resolution monitors</p>
-                                        <p class="text-gray-600 text-sm"><strong>Software:</strong> Programming IDEs, design software, simulation tools</p>
-                                        <p class="text-gray-600 text-sm"><strong>Capacity:</strong> 8 labs with 40-50 workstations each</p>
+                                    <div id="ai-hub-content" class="hidden pl-12 mt-2 space-y-3">
+                                        <p class="text-gray-600 text-sm"><strong>Features:</strong> AI Development & Research Center</p>
+                                        <p class="text-gray-600 text-sm"><strong>Equipment:</strong> High-performance GPUs, AI workstations</p>
+                                        <p class="text-gray-600 text-sm"><strong>Software:</strong> Machine learning frameworks, AI development tools</p>
+                                        <p class="text-gray-600 text-sm"><strong>Access:</strong> Available for AI research and development projects</p>
                                     </div>
                                 </li>
                                 <li class="flex flex-col group">
-                                    <button class="flex items-start w-full text-left focus:outline-none" onclick="toggleDropdown('science-labs')">
+                                    <button class="flex items-start w-full text-left focus:outline-none" onclick="toggleDropdown('music-room')">
                                         <div class="bg-purple-100 p-2 rounded-lg mr-3 sm:mr-4 group-hover:bg-purple-200 transition-colors relative">
-                                            <i class="fas fa-flask text-purple-600 text-lg sm:text-xl"></i>
+                                            <i class="fas fa-music text-purple-600 text-lg sm:text-xl"></i>
                                         </div>
                                         <div class="flex-1">
-                                            <span class="text-gray-600 text-base sm:text-lg group-hover:text-gray-800 transition-colors">Science Laboratories</span>
-                                            <i class="fas fa-chevron-down ml-2 text-purple-600 transition-transform duration-300" id="science-labs-icon"></i>
+                                            <span class="text-gray-600 text-base sm:text-lg group-hover:text-gray-800 transition-colors">Music Room</span>
+                                            <i class="fas fa-chevron-down ml-2 text-purple-600 transition-transform duration-300" id="music-room-icon"></i>
                                         </div>
                                     </button>
-                                    <div id="science-labs-content" class="hidden pl-12 mt-2 space-y-3">
-                                        <p class="text-gray-600 text-sm"><strong>Features:</strong> Advanced Research Facilities</p>
-                                        <p class="text-gray-600 text-sm"><strong>Equipment:</strong> Microscopes, testing apparatus, measurement tools</p>
-                                        <p class="text-gray-600 text-sm"><strong>Subjects:</strong> Physics, Chemistry, Biology, Electronics</p>
-                                        <p class="text-gray-600 text-sm"><strong>Safety:</strong> Full safety protocols and emergency equipment</p>
+                                    <div id="music-room-content" class="hidden pl-12 mt-2 space-y-3">
+                                        <p class="text-gray-600 text-sm"><strong>Features:</strong> Soundproof Practice Rooms</p>
+                                        <p class="text-gray-600 text-sm"><strong>Equipment:</strong> Pianos, guitars, drums, recording equipment</p>
+                                        <p class="text-gray-600 text-sm"><strong>Software:</strong> Music production and composition tools</p>
+                                        <p class="text-gray-600 text-sm"><strong>Hours:</strong> Monday-Saturday 8:00 AM - 8:00 PM</p>
+                                    </div>
+                                </li>
+                                <li class="flex flex-col group">
+                                    <button class="flex items-start w-full text-left focus:outline-none" onclick="toggleDropdown('engineering-room')">
+                                        <div class="bg-purple-100 p-2 rounded-lg mr-3 sm:mr-4 group-hover:bg-purple-200 transition-colors relative">
+                                            <i class="fas fa-cogs text-purple-600 text-lg sm:text-xl"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <span class="text-gray-600 text-base sm:text-lg group-hover:text-gray-800 transition-colors">Engineering Room</span>
+                                            <i class="fas fa-chevron-down ml-2 text-purple-600 transition-transform duration-300" id="engineering-room-icon"></i>
+                                        </div>
+                                    </button>
+                                    <div id="engineering-room-content" class="hidden pl-12 mt-2 space-y-3">
+                                        <p class="text-gray-600 text-sm"><strong>Features:</strong> Engineering Workshop & Lab</p>
+                                        <p class="text-gray-600 text-sm"><strong>Equipment:</strong> 3D printers, CNC machines, testing equipment</p>
+                                        <p class="text-gray-600 text-sm"><strong>Tools:</strong> CAD software, simulation tools, prototyping materials</p>
+                                        <p class="text-gray-600 text-sm"><strong>Safety:</strong> Full safety equipment and protocols</p>
+                                    </div>
+                                </li>
+                                <li class="flex flex-col group">
+                                    <button class="flex items-start w-full text-left focus:outline-none" onclick="toggleDropdown('art-room')">
+                                        <div class="bg-purple-100 p-2 rounded-lg mr-3 sm:mr-4 group-hover:bg-purple-200 transition-colors relative">
+                                            <i class="fas fa-palette text-purple-600 text-lg sm:text-xl"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <span class="text-gray-600 text-base sm:text-lg group-hover:text-gray-800 transition-colors">Art Room</span>
+                                            <i class="fas fa-chevron-down ml-2 text-purple-600 transition-transform duration-300" id="art-room-icon"></i>
+                                        </div>
+                                    </button>
+                                    <div id="art-room-content" class="hidden pl-12 mt-2 space-y-3">
+                                        <p class="text-gray-600 text-sm"><strong>Features:</strong> Creative Studio Space</p>
+                                        <p class="text-gray-600 text-sm"><strong>Equipment:</strong> Drawing tables, easels, art supplies</p>
+                                        <p class="text-gray-600 text-sm"><strong>Media:</strong> Traditional and digital art tools</p>
+                                        <p class="text-gray-600 text-sm"><strong>Hours:</strong> Monday-Saturday 9:00 AM - 7:00 PM</p>
+                                    </div>
+                                </li>
+                                <li class="flex flex-col group">
+                                    <button class="flex items-start w-full text-left focus:outline-none" onclick="toggleDropdown('multimedia-room')">
+                                        <div class="bg-purple-100 p-2 rounded-lg mr-3 sm:mr-4 group-hover:bg-purple-200 transition-colors relative">
+                                            <i class="fas fa-film text-purple-600 text-lg sm:text-xl"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <span class="text-gray-600 text-base sm:text-lg group-hover:text-gray-800 transition-colors">Multimedia Room</span>
+                                            <i class="fas fa-chevron-down ml-2 text-purple-600 transition-transform duration-300" id="multimedia-room-icon"></i>
+                                        </div>
+                                    </button>
+                                    <div id="multimedia-room-content" class="hidden pl-12 mt-2 space-y-3">
+                                        <p class="text-gray-600 text-sm"><strong>Features:</strong> Digital Media Production Studio</p>
+                                        <p class="text-gray-600 text-sm"><strong>Equipment:</strong> Video cameras, lighting, green screen</p>
+                                        <p class="text-gray-600 text-sm"><strong>Software:</strong> Video editing, animation, graphic design tools</p>
+                                        <p class="text-gray-600 text-sm"><strong>Capacity:</strong> 20 workstations with professional software</p>
                                     </div>
                                 </li>
                             </ul>
@@ -946,54 +997,71 @@
                             </h3>
                             <ul class="space-y-4 sm:space-y-6 flex-grow">
                                 <li class="flex flex-col group">
-                                    <button class="flex items-start w-full text-left focus:outline-none" onclick="toggleDropdown('cafeteria-service')">
+                                    <button class="flex items-start w-full text-left focus:outline-none" onclick="toggleDropdown('student-orgs')">
                                         <div class="bg-purple-100 p-2 rounded-lg mr-3 sm:mr-4 group-hover:bg-purple-200 transition-colors relative">
-                                            <i class="fas fa-utensils text-purple-600 text-lg sm:text-xl"></i>
+                                            <i class="fas fa-users text-purple-600 text-lg sm:text-xl"></i>
                                         </div>
                                         <div class="flex-1">
-                                            <span class="text-gray-600 text-base sm:text-lg group-hover:text-gray-800 transition-colors">Cafeteria</span>
-                                            <i class="fas fa-chevron-down ml-2 text-purple-600 transition-transform duration-300" id="cafeteria-service-icon"></i>
+                                            <span class="text-gray-600 text-base sm:text-lg group-hover:text-gray-800 transition-colors">Student Organizations</span>
+                                            <i class="fas fa-chevron-down ml-2 text-purple-600 transition-transform duration-300" id="student-orgs-icon"></i>
                                         </div>
                                     </button>
-                                    <div id="cafeteria-service-content" class="hidden pl-12 mt-2 space-y-3">
-                                        <p class="text-gray-600 text-sm"><strong>Features:</strong> Diverse Food Options</p>
-                                        <p class="text-gray-600 text-sm"><strong>Hours:</strong> Monday-Friday 6:30 AM - 8:00 PM, Saturday 7:00 AM - 6:00 PM</p>
-                                        <p class="text-gray-600 text-sm"><strong>Cuisine:</strong> Filipino, Asian, Western, and vegetarian options</p>
-                                        <p class="text-gray-600 text-sm"><strong>Payment:</strong> Cash, card, and student ID accepted</p>
+                                    <div id="student-orgs-content" class="hidden pl-12 mt-2 space-y-3">
+                                        <p class="text-gray-600 text-sm"><strong>Features:</strong> Over 20+ Student Organizations</p>
+                                        <p class="text-gray-600 text-sm"><strong>Categories:</strong> Academic, Cultural, Sports, Arts, and more</p>
+                                        <p class="text-gray-600 text-sm"><strong>Benefits:</strong> Leadership development, networking, skill enhancement</p>
+                                        <p class="text-gray-600 text-sm"><strong>Join:</strong> Open to all enrolled students</p>
                                     </div>
                                 </li>
                                 <li class="flex flex-col group">
-                                    <button class="flex items-start w-full text-left focus:outline-none" onclick="toggleDropdown('sports-complex')">
+                                    <button class="flex items-start w-full text-left focus:outline-none" onclick="toggleDropdown('gym-room')">
                                         <div class="bg-purple-100 p-2 rounded-lg mr-3 sm:mr-4 group-hover:bg-purple-200 transition-colors relative">
-                                            <i class="fas fa-basketball-ball text-purple-600 text-lg sm:text-xl"></i>
+                                            <i class="fas fa-dumbbell text-purple-600 text-lg sm:text-xl"></i>
                                         </div>
                                         <div class="flex-1">
-                                            <span class="text-gray-600 text-base sm:text-lg group-hover:text-gray-800 transition-colors">Sports Complex</span>
-                                            <i class="fas fa-chevron-down ml-2 text-purple-600 transition-transform duration-300" id="sports-complex-icon"></i>
+                                            <span class="text-gray-600 text-base sm:text-lg group-hover:text-gray-800 transition-colors">Gym Room</span>
+                                            <i class="fas fa-chevron-down ml-2 text-purple-600 transition-transform duration-300" id="gym-room-icon"></i>
                                         </div>
                                     </button>
-                                    <div id="sports-complex-content" class="hidden pl-12 mt-2 space-y-3">
-                                        <p class="text-gray-600 text-sm"><strong>Features:</strong> State-of-the-Art Facilities</p>
-                                        <p class="text-gray-600 text-sm"><strong>Sports:</strong> Basketball, volleyball, badminton, table tennis</p>
-                                        <p class="text-gray-600 text-sm"><strong>Equipment:</strong> Professional-grade sports equipment available</p>
-                                        <p class="text-gray-600 text-sm"><strong>Access:</strong> Available to all students with valid ID</p>
+                                    <div id="gym-room-content" class="hidden pl-12 mt-2 space-y-3">
+                                        <p class="text-gray-600 text-sm"><strong>Features:</strong> Modern Fitness Equipment</p>
+                                        <p class="text-gray-600 text-sm"><strong>Equipment:</strong> Cardio machines, weights, yoga space</p>
+                                        <p class="text-gray-600 text-sm"><strong>Hours:</strong> Monday-Saturday 6:00 AM - 9:00 PM</p>
+                                        <p class="text-gray-600 text-sm"><strong>Access:</strong> Free for all students with valid ID</p>
                                     </div>
                                 </li>
                                 <li class="flex flex-col group">
-                                    <button class="flex items-start w-full text-left focus:outline-none" onclick="toggleDropdown('campus-wifi')">
+                                    <button class="flex items-start w-full text-left focus:outline-none" onclick="toggleDropdown('microsoft-room')">
                                         <div class="bg-purple-100 p-2 rounded-lg mr-3 sm:mr-4 group-hover:bg-purple-200 transition-colors relative">
-                                            <i class="fas fa-wifi text-purple-600 text-lg sm:text-xl"></i>
+                                            <i class="fas fa-windows text-purple-600 text-lg sm:text-xl"></i>
                                         </div>
                                         <div class="flex-1">
-                                            <span class="text-gray-600 text-base sm:text-lg group-hover:text-gray-800 transition-colors">Campus WiFi</span>
-                                            <i class="fas fa-chevron-down ml-2 text-purple-600 transition-transform duration-300" id="campus-wifi-icon"></i>
+                                            <span class="text-gray-600 text-base sm:text-lg group-hover:text-gray-800 transition-colors">Microsoft Room</span>
+                                            <i class="fas fa-chevron-down ml-2 text-purple-600 transition-transform duration-300" id="microsoft-room-icon"></i>
                                         </div>
                                     </button>
-                                    <div id="campus-wifi-content" class="hidden pl-12 mt-2 space-y-3">
-                                        <p class="text-gray-600 text-sm"><strong>Features:</strong> High-Speed Internet Access</p>
-                                        <p class="text-gray-600 text-sm"><strong>Coverage:</strong> Campus-wide connectivity in all buildings</p>
-                                        <p class="text-gray-600 text-sm"><strong>Speed:</strong> Up to 100 Mbps for academic use</p>
-                                        <p class="text-gray-600 text-sm"><strong>Access:</strong> Available to all students and faculty with credentials</p>
+                                    <div id="microsoft-room-content" class="hidden pl-12 mt-2 space-y-3">
+                                        <p class="text-gray-600 text-sm"><strong>Features:</strong> Microsoft Technology Hub</p>
+                                        <p class="text-gray-600 text-sm"><strong>Resources:</strong> Latest Microsoft software and tools</p>
+                                        <p class="text-gray-600 text-sm"><strong>Training:</strong> Workshops and certification programs</p>
+                                        <p class="text-gray-600 text-sm"><strong>Access:</strong> Available for IT and Computer Science students</p>
+                                    </div>
+                                </li>
+                                <li class="flex flex-col group">
+                                    <button class="flex items-start w-full text-left focus:outline-none" onclick="toggleDropdown('optum-room')">
+                                        <div class="bg-purple-100 p-2 rounded-lg mr-3 sm:mr-4 group-hover:bg-purple-200 transition-colors relative">
+                                            <i class="fas fa-heartbeat text-purple-600 text-lg sm:text-xl"></i>
+                                        </div>
+                                        <div class="flex-1">
+                                            <span class="text-gray-600 text-base sm:text-lg group-hover:text-gray-800 transition-colors">Optum Room</span>
+                                            <i class="fas fa-chevron-down ml-2 text-purple-600 transition-transform duration-300" id="optum-room-icon"></i>
+                                        </div>
+                                    </button>
+                                    <div id="optum-room-content" class="hidden pl-12 mt-2 space-y-3">
+                                        <p class="text-gray-600 text-sm"><strong>Features:</strong> Healthcare Technology Lab</p>
+                                        <p class="text-gray-600 text-sm"><strong>Equipment:</strong> Medical simulation tools and software</p>
+                                        <p class="text-gray-600 text-sm"><strong>Programs:</strong> Healthcare IT training and workshops</p>
+                                        <p class="text-gray-600 text-sm"><strong>Access:</strong> For Healthcare and IT students</p>
                                     </div>
                                 </li>
                             </ul>

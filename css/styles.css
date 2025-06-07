@@ -245,7 +245,7 @@ html {
 
 /* Add floating label for chat button */
 .chat-button::before {
-    content: 'Chat with Kuya RAM';
+    content: 'Chat with RAMSEY';
     position: absolute;
     right: 120%;
     background: rgba(0, 0, 0, 0.8);

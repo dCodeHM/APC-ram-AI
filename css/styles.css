@@ -1778,3 +1778,250 @@ html {
         transition: none !important;
     }
 }
+
+/* Tablet-Specific Optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Optimize layout containment */
+    .container,
+    .max-w-7xl,
+    .max-w-6xl {
+        contain: layout style paint;
+        will-change: transform;
+    }
+
+    /* Optimize grid layouts */
+    .grid {
+        contain: layout style paint;
+        will-change: transform;
+    }
+
+    /* Optimize card layouts */
+    .card,
+    .team-member-card,
+    .carousel-card {
+        contain: layout style paint;
+        will-change: transform;
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+
+    /* Optimize images */
+    img {
+        content-visibility: auto;
+        contain: layout size style;
+        transform: translateZ(0);
+    }
+
+    /* Optimize animations */
+    .animate-fade-in,
+    .animate-slide-up,
+    .animate-slide-down {
+        animation-duration: 0.2s !important;
+    }
+
+    /* Optimize transitions */
+    .transition-all,
+    .transition-transform,
+    .transition-opacity {
+        transition-duration: 0.2s !important;
+    }
+
+    /* Optimize shadows */
+    .shadow-lg,
+    .shadow-xl {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    /* Optimize background effects */
+    .bg-gradient-to-br,
+    .bg-gradient-to-r {
+        background-attachment: fixed;
+    }
+
+    /* Optimize scrolling */
+    .overflow-y-auto,
+    .overflow-x-auto {
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+        overscroll-behavior: contain;
+    }
+
+    /* Optimize chat window for tablets */
+    #chatWindow {
+        width: 90%;
+        max-width: 500px;
+        height: 80vh;
+        max-height: 600px;
+        transform: translate(50%, 45%);
+        contain: layout style paint;
+        will-change: transform, opacity;
+    }
+
+    /* Optimize carousel for tablets */
+    .carousel-container {
+        height: auto;
+        min-height: 400px;
+        contain: layout style paint;
+    }
+
+    .carousel-card {
+        width: 85%;
+        max-width: 400px;
+        contain: layout style paint;
+        will-change: transform, opacity;
+    }
+
+    /* Optimize team member cards for tablets */
+    .team-member-card {
+        contain: layout style paint;
+        will-change: transform;
+    }
+
+    .team-member-image {
+        contain: layout size style;
+    }
+
+    /* Optimize dropdowns for tablets */
+    [id$="-content"] {
+        contain: layout style paint;
+        will-change: transform, opacity;
+    }
+
+    /* Optimize buttons for tablets */
+    .btn,
+    .chat-toggle-button {
+        contain: layout style paint;
+        will-change: transform;
+        transform: translateZ(0);
+    }
+
+    /* Optimize navigation for tablets */
+    .nav-link {
+        contain: layout style paint;
+        will-change: transform;
+    }
+
+    /* Optimize search bar for tablets */
+    .search-bar {
+        contain: layout style paint;
+        will-change: box-shadow;
+    }
+
+    /* Optimize floating elements for tablets */
+    .floating-shape {
+        display: none;
+    }
+
+    /* Optimize background animations for tablets */
+    .animated-bg::after,
+    .purple-section-bg::before {
+        display: none;
+    }
+
+    /* Optimize hover effects for tablets */
+    .hover-scale:hover,
+    .card:hover,
+    .btn:hover,
+    .team-member-card:hover {
+        transform: translateY(-2px) !important;
+    }
+
+    /* Optimize touch targets for tablets */
+    .btn,
+    .nav-link,
+    .chat-toggle-button {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    /* Optimize text rendering for tablets */
+    h1, h2, h3, h4, h5, h6,
+    p, span, a {
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Optimize memory usage for tablets */
+    * {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Optimize paint operations for tablets */
+    .card,
+    .btn,
+    .chat-toggle-button,
+    .team-member-card {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Optimize loading states for tablets */
+    .loading {
+        animation: spin 1s linear infinite;
+        will-change: transform;
+    }
+
+    /* Optimize scrollbar for tablets */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #e5e7eb;
+        border-radius: 4px;
+    }
+
+    /* Optimize touch interactions for tablets */
+    @media (hover: none) {
+        .hover-scale:hover,
+        .card:hover,
+        .btn:hover,
+        .team-member-card:hover {
+            transform: none !important;
+        }
+
+        .chat-toggle-button:hover {
+            animation-play-state: paused !important;
+        }
+    }
+}
+
+/* Optimize animations for tablets */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(10px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-10px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Optimize print styles for tablets */
+@media print {
+    .animate-fade-in,
+    .animate-slide-up,
+    .animate-slide-down,
+    .hover-scale,
+    .chat-toggle-button,
+    .floating-shape,
+    .animated-bg::after,
+    .purple-section-bg::before {
+        animation: none !important;
+        transition: none !important;
+    }
+}

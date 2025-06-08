@@ -1043,6 +1043,7 @@ button[onclick^="toggleDropdown"]:focus-visible {
     font-weight: 600;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
+
 /* Mobile Box Layout (700px and below) */
 @media (max-width: 700px) {
     .carousel-container {
@@ -1597,7 +1598,6 @@ html {
     z-index: 1000;
     display: none;
     will-change: transform, opacity;
-    contain: layout style paint;
 }
 
 #chatWindow.active {
@@ -1622,7 +1622,6 @@ html {
     cursor: pointer;
     position: relative;
     will-change: transform;
-    contain: layout style paint;
 }
 
 /* Optimize carousel */
@@ -1778,3 +1777,190 @@ html {
         transition: none !important;
     }
 }
+
+/* --- Comprehensive Mobile & Tablet Optimizations (1240px and below) --- */
+@media (max-width: 1240px) {
+    /* Basic performance enhancements */
+    body {
+        -webkit-font-smoothing: subpixel-antialiased;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Reduce animation durations for smoother performance */
+    .animate-fade-in,
+    .animate-slide-up,
+    .animate-slide-down,
+    .animate-float,
+    .transition-all {
+        animation-duration: 0.2s !important;
+        transition-duration: 0.2s !important;
+    }
+    
+    /* Hardware acceleration for smoother animations */
+    .carousel-card,
+    #chatWindow,
+    .about-ramsey,
+    .chat-toggle-button {
+        -webkit-transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+    
+    /* Fix iOS flickering issues */
+    .fixed,
+    #chatWindow,
+    .about-ramsey,
+    .chat-toggle-container {
+        -webkit-transform: translate3d(0, 0, 0);
+    }
+    
+    /* Reduce shadow complexity for better performance */
+    .shadow-2xl,
+    .shadow-xl,
+    .shadow-lg,
+    .shadow-\[0_20px_50px_rgba\(8\,_112\,_184\,_0\.15\)\] {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    /* Simplified backdrop blur for better performance */
+    .backdrop-blur-xl,
+    .backdrop-blur-sm {
+        backdrop-filter: blur(4px) !important;
+    }
+    
+    /* Disable animations for background elements */
+    .floating-shape,
+    .animated-bg::after,
+    .purple-section-bg::before {
+        animation: none !important;
+        opacity: 0.5 !important;
+    }
+    
+    /* Preserve About Ramsey section but optimize animations */
+    .about-ramsey {
+        display: block !important;
+        transition: opacity 0.2s ease-out !important;
+    }
+    
+    /* Preserve RAMSEY AI Chatbot but optimize animations */
+    #chatWindow {
+        transition: opacity 0.2s ease-out !important;
+    }
+    
+    /* Optimize carousel for better performance */
+    .carousel-container {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        overflow: visible !important;
+        padding: 2rem 1rem !important;
+        gap: 2rem !important;
+    }
+    
+    .carousel-card {
+        width: 100% !important;
+        max-width: 450px !important;
+        margin: 0 !important;
+        opacity: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        transition: transform 0.2s ease-out, box-shadow 0.2s ease-out !important;
+    }
+    
+    /* Optimize carousel card grid layout */
+    .carousel-card .grid {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 1rem !important;
+        width: 100% !important;
+        justify-items: center !important;
+        align-items: center !important;
+    }
+    
+    /* Optimize grid item content */
+    .carousel-card .grid > div {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        width: 100% !important;
+    }
+    
+    /* Hide carousel navigation buttons */
+    .prevBtn, .nextBtn {
+        display: none !important;
+    }
+    
+    /* Reduce paint operations for better performance */
+    .btn,
+    .card,
+    .team-member-card {
+        will-change: transform !important;
+    }
+    
+    /* Better scroll performance on touch devices */
+    html, body, .overflow-auto, .overflow-y-auto {
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Disable hover animations on touch devices */
+    @media (hover: none) {
+        .hover\:scale-105:hover, 
+        .hover\:rotate-1:hover,
+        .card:hover,
+        .btn:hover,
+        .team-member-card:hover {
+            transform: none !important;
+        }
+        
+        .carousel-card:hover {
+            transform: none !important;
+        }
+    }
+}
+
+/* Further optimizations for lower-tier devices */
+@media (max-width: 768px) {
+    /* Completely disable most animations on mobile */
+    .animate-fade-in,
+    .animate-slide-up,
+    .animate-slide-down,
+    .animate-float,
+    .animate-gradient-x {
+        animation: none !important;
+    }
+    
+    /* Simplified shadows on mobile */
+    .shadow-2xl,
+    .shadow-xl,
+    .shadow-lg,
+    .shadow-md,
+    .shadow-\[0_20px_50px_rgba\(8\,_112\,_184\,_0\.15\)\] {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    /* Disable backdrop blur on mobile */
+    .backdrop-blur-xl,
+    .backdrop-blur-sm {
+        backdrop-filter: none !important;
+    }
+    
+    /* Hide purely decorative elements on mobile */
+    .floating-shape,
+    .decorative-element {
+        display: none !important;
+    }
+    
+    /* Simplified background effects on mobile */
+    .animated-bg::after,
+    .purple-section-bg::before {
+        opacity: 0.3 !important;
+    }
+}
+

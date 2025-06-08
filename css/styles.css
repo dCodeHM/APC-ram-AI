@@ -177,17 +177,15 @@ html {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: opacity 0.2s ease-out;
     z-index: 1000;
     display: none;
-    display: flex;
-    flex-direction: column;
 }
 
 #chatWindow.active {
     opacity: 1;
     visibility: visible;
-    display: flex;
+    display: block;
 }
 
 /* Chat Toggle Button Styles */
@@ -212,7 +210,7 @@ html {
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    transition: all 0.3s ease;
+    transition: transform 0.2s ease-out;
     border: none;
     cursor: pointer;
     position: relative;
@@ -220,7 +218,6 @@ html {
 
 .chat-toggle-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.15), 0 3px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .chat-toggle-button:active {
@@ -330,7 +327,7 @@ html {
         box-shadow: 0 0 0 0 rgba(231, 175, 65, 0.4);
     }
     70% {
-        box-shadow: 0 0 0 10px rgba(231, 175, 65, 0);
+        box-shadow: 0 0 0 5px rgba(231, 175, 65, 0);
     }
     100% {
         box-shadow: 0 0 0 0 rgba(231, 175, 65, 0);
@@ -338,7 +335,12 @@ html {
 }
 
 .chat-toggle-button {
-    animation: pulse 2s infinite;
+    animation: pulse 3s infinite;
+    animation-play-state: paused;
+}
+
+.chat-toggle-button:hover {
+    animation-play-state: running;
 }
 
 /* Improve touch target size */
@@ -1299,5 +1301,198 @@ button[onclick^="toggleDropdown"]:focus-visible {
 
     .team-member-info {
         padding: 0.75rem;
+    }
+}
+
+/* Optimize animations and transitions */
+.animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+}
+
+.animate-slide-down {
+    animation: slideDown 0.3s ease-out;
+}
+
+/* Optimized keyframe animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Optimize hover effects */
+.hover-scale {
+    transition: transform 0.2s ease-out;
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
+}
+
+/* Optimize chat window transitions */
+#chatWindow {
+    position: fixed;
+    bottom: 50%;
+    right: 50%;
+    transform: translate(50%, 50%);
+    width: 380px;
+    height: 600px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-out;
+    z-index: 1000;
+    display: none;
+}
+
+#chatWindow.active {
+    opacity: 1;
+    visibility: visible;
+    display: block;
+}
+
+/* Optimize chat toggle button */
+.chat-toggle-button {
+    background: #e7af41;
+    color: white;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease-out;
+    border: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.chat-toggle-button:hover {
+    transform: translateY(-2px);
+}
+
+.chat-toggle-button:active {
+    transform: translateY(0);
+}
+
+/* Optimize pulse animation */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(231, 175, 65, 0.4); }
+    70% { box-shadow: 0 0 0 5px rgba(231, 175, 65, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(231, 175, 65, 0); }
+}
+
+.chat-toggle-button {
+    animation: pulse 3s infinite;
+    animation-play-state: paused;
+}
+
+.chat-toggle-button:hover {
+    animation-play-state: running;
+}
+
+/* Optimize carousel transitions */
+.carousel-item {
+    transition: transform 0.3s ease-out;
+}
+
+/* Optimize search bar transitions */
+.search-bar {
+    transition: box-shadow 0.2s ease-out;
+}
+
+/* Optimize button hover states */
+.btn {
+    transition: background-color 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+/* Optimize card hover effects */
+.card {
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Optimize mobile menu transitions */
+.mobile-menu {
+    transition: transform 0.2s ease-out;
+}
+
+/* Optimize loading states */
+.loading {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Optimize scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Optimize image loading */
+img {
+    content-visibility: auto;
+}
+
+/* Optimize font loading */
+@font-face {
+    font-family: 'YourFont';
+    font-display: swap;
+    src: url('path/to/your/font.woff2') format('woff2');
+}
+
+/* Optimize media queries */
+@media (max-width: 768px) {
+    .animate-fade-in,
+    .animate-slide-up,
+    .animate-slide-down {
+        animation: none;
+    }
+    
+    .hover-scale:hover {
+        transform: none;
+    }
+    
+    .card:hover {
+        transform: none;
+    }
+}
+
+/* Optimize print styles */
+@media print {
+    .animate-fade-in,
+    .animate-slide-up,
+    .animate-slide-down,
+    .hover-scale,
+    .chat-toggle-button {
+        animation: none !important;
+        transition: none !important;
     }
 }

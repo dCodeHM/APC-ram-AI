@@ -1139,3 +1139,112 @@ button[onclick^="toggleDropdown"]:focus-visible {
         padding: 0.75rem;
     }
 }
+
+/* Chat Toggle Button Styles */
+.chat-toggle-container {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
+
+.chat-toggle-button {
+    background: #e7af41;
+    color: white;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.chat-toggle-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.15), 0 3px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.chat-toggle-button:active {
+    transform: translateY(0);
+}
+
+.chat-toggle-button i {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+/* Mobile and Tablet Adjustments */
+@media (max-width: 768px) {
+    .chat-toggle-container {
+        bottom: 5rem; /* Increased bottom spacing to avoid browser tab bar */
+        right: 1rem;
+    }
+
+    .chat-toggle-button {
+        width: 3.25rem;
+        height: 3.25rem;
+    }
+
+    .chat-toggle-button i {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .chat-toggle-container {
+        bottom: 4.5rem; /* Slightly adjusted for smaller screens */
+        right: 0.75rem;
+    }
+
+    .chat-toggle-button {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .chat-toggle-button i {
+        font-size: 1.125rem;
+    }
+}
+
+/* Ensure the button is above the browser's tab bar on iOS */
+@supports (-webkit-touch-callout: none) {
+    .chat-toggle-container {
+        bottom: 6rem; /* Extra spacing for iOS devices */
+    }
+}
+
+/* Add a subtle pulse animation to draw attention */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(231, 175, 65, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(231, 175, 65, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(231, 175, 65, 0);
+    }
+}
+
+.chat-toggle-button {
+    animation: pulse 2s infinite;
+}
+
+/* Improve touch target size */
+.chat-toggle-button::before {
+    content: '';
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
+    bottom: -0.5rem;
+    left: -0.5rem;
+}

@@ -1496,3 +1496,285 @@ img {
         transition: none !important;
     }
 }
+
+/* Base Performance Optimizations */
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Optimize animations and transitions */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* Optimize for mobile devices */
+@media (max-width: 768px) {
+    /* Disable heavy animations on mobile */
+    .animate-fade-in,
+    .animate-slide-up,
+    .animate-slide-down,
+    .animate-float,
+    .animate-gradient-x {
+        animation: none !important;
+    }
+
+    /* Disable hover effects on touch devices */
+    .hover-scale:hover,
+    .card:hover,
+    .btn:hover,
+    .team-member-card:hover {
+        transform: none !important;
+    }
+
+    /* Optimize transitions */
+    .card,
+    .btn,
+    .chat-toggle-button,
+    .team-member-card {
+        transition: none !important;
+    }
+
+    /* Reduce shadow complexity */
+    * {
+        box-shadow: none !important;
+    }
+
+    /* Optimize transitions */
+    .card,
+    .btn,
+    .chat-toggle-button,
+    .team-member-card {
+        transition: none !important;
+    }
+
+    /* Optimize background effects */
+    .purple-section-bg::before,
+    .animated-bg::after,
+    .floating-shape {
+        display: none !important;
+    }
+}
+
+/* Optimize image loading */
+img {
+    content-visibility: auto;
+    contain: layout size style;
+}
+
+/* Optimize font loading */
+@font-face {
+    font-family: 'Poppins';
+    font-display: swap;
+    src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+}
+
+/* Optimize scroll behavior */
+html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Optimize chat window */
+#chatWindow {
+    position: fixed;
+    bottom: 50%;
+    right: 50%;
+    transform: translate(50%, 50%);
+    width: 380px;
+    height: 600px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-out;
+    z-index: 1000;
+    display: none;
+    will-change: transform, opacity;
+    contain: layout style paint;
+}
+
+#chatWindow.active {
+    opacity: 1;
+    visibility: visible;
+    display: block;
+}
+
+/* Optimize chat toggle button */
+.chat-toggle-button {
+    background: #e7af41;
+    color: white;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease-out;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    will-change: transform;
+    contain: layout style paint;
+}
+
+/* Optimize carousel */
+.carousel-container {
+    contain: layout style paint;
+    will-change: transform;
+}
+
+.carousel-card {
+    contain: layout style paint;
+    will-change: transform, opacity;
+}
+
+/* Optimize loading states */
+.loading {
+    animation: spin 1s linear infinite;
+    will-change: transform;
+}
+
+/* Optimize background animations */
+.animate-gradient-x {
+    will-change: background-position;
+}
+
+/* Optimize floating elements */
+.floating-shape {
+    will-change: transform;
+    contain: layout style paint;
+}
+
+/* Optimize card transitions */
+.card {
+    contain: layout style paint;
+    will-change: transform;
+}
+
+/* Optimize button states */
+.btn {
+    contain: layout style paint;
+    will-change: transform, background-color;
+}
+
+/* Optimize mobile menu */
+.mobile-menu {
+    contain: layout style paint;
+    will-change: transform;
+}
+
+/* Optimize search bar */
+.search-bar {
+    contain: layout style paint;
+    will-change: box-shadow;
+}
+
+/* Optimize team member cards */
+.team-member-card {
+    contain: layout style paint;
+    will-change: transform;
+}
+
+/* Optimize dropdowns */
+[id$="-content"] {
+    contain: layout style paint;
+    will-change: transform, opacity;
+}
+
+/* Optimize scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #e5e7eb;
+    border-radius: 3px;
+}
+
+/* Optimize touch interactions */
+@media (hover: none) {
+    .hover-scale:hover,
+    .card:hover,
+    .btn:hover,
+    .team-member-card:hover {
+        transform: none !important;
+    }
+
+    .chat-toggle-button:hover {
+        animation-play-state: paused !important;
+    }
+}
+
+/* Optimize paint operations */
+@media (max-width: 480px) {
+    * {
+        box-shadow: none !important;
+    }
+
+    .card,
+    .btn,
+    .chat-toggle-button {
+        transition: none !important;
+    }
+
+    #chatWindow {
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Optimize memory usage */
+@media (max-width: 768px) {
+    .floating-shape,
+    .animated-bg::after,
+    .purple-section-bg::before {
+        display: none;
+    }
+}
+
+/* Optimize animations */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Optimize print styles */
+@media print {
+    .animate-fade-in,
+    .animate-slide-up,
+    .animate-slide-down,
+    .hover-scale,
+    .chat-toggle-button,
+    .floating-shape,
+    .animated-bg::after,
+    .purple-section-bg::before {
+        animation: none !important;
+        transition: none !important;
+    }
+}

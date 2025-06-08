@@ -430,4 +430,75 @@ $(document).ready(function() {
     initializeCarousel();
     
     // ... rest of existing DOMContentLoaded code ...
+});
+
+// About Us Toggle Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const aboutUsToggle = document.getElementById('aboutUsToggle');
+    const aboutUsContent = document.getElementById('aboutUsContent');
+    const toggleIcon = aboutUsToggle.querySelector('i');
+    const navAboutUs = document.getElementById('navAboutUs');
+    const mobileNavAboutUs = document.getElementById('mobileNavAboutUs');
+    let isAboutUsOpen = false;
+
+    function toggleAboutUs() {
+        isAboutUsOpen = !isAboutUsOpen;
+        
+        // Toggle content visibility with smooth animation
+        if (isAboutUsOpen) {
+            aboutUsContent.classList.remove('hidden');
+            aboutUsContent.style.maxHeight = aboutUsContent.scrollHeight + 'px';
+            toggleIcon.style.transform = 'rotate(180deg)';
+            aboutUsToggle.classList.add('bg-[#e7af41]/5');
+        } else {
+            aboutUsContent.style.maxHeight = '0';
+            toggleIcon.style.transform = 'rotate(0deg)';
+            aboutUsToggle.classList.remove('bg-[#e7af41]/5');
+            setTimeout(() => {
+                aboutUsContent.classList.add('hidden');
+            }, 300);
+        }
+    }
+
+    // Toggle button click handler
+    aboutUsToggle.addEventListener('click', toggleAboutUs);
+
+    // Navigation link click handlers
+    function handleAboutUsClick(e) {
+        e.preventDefault();
+        
+        // Scroll to the About Us section
+        aboutUsToggle.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+        });
+        
+        // If the section is not already open, open it
+        if (!isAboutUsOpen) {
+            setTimeout(toggleAboutUs, 500); // Wait for scroll to complete
+        }
+    }
+
+    // Add click handlers for both desktop and mobile navigation
+    navAboutUs.addEventListener('click', handleAboutUsClick);
+    mobileNavAboutUs.addEventListener('click', handleAboutUsClick);
+
+    // Close mobile menu when clicking navigation links
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenu) {
+        mobileNavAboutUs.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+    }
+
+    // Handle window resize
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            if (isAboutUsOpen) {
+                aboutUsContent.style.maxHeight = aboutUsContent.scrollHeight + 'px';
+            }
+        }, 250);
+    });
 }); 

@@ -164,11 +164,12 @@ html {
     }
 }
 
-/* Remove duplicate chat window styles and consolidate them */
+/* Chat Window Styles */
 #chatWindow {
     position: fixed;
-    bottom: 100px;
-    right: 30px;
+    bottom: 50%;
+    right: 50%;
+    transform: translate(50%, 50%);
     width: 380px;
     height: 600px;
     background: white;
@@ -176,17 +177,178 @@ html {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     opacity: 0;
     visibility: hidden;
-    transform: translateY(20px);
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     z-index: 1000;
     display: none;
+    display: flex;
+    flex-direction: column;
 }
 
 #chatWindow.active {
     opacity: 1;
     visibility: visible;
+    display: flex;
+}
+
+/* Chat Toggle Button Styles */
+.chat-toggle-container {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
+
+.chat-toggle-button {
+    background: #e7af41;
+    color: white;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.chat-toggle-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.15), 0 3px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.chat-toggle-button:active {
     transform: translateY(0);
-    display: block;
+}
+
+.chat-toggle-button i {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+/* Chat Window Header */
+#chatWindow .flex.items-center.justify-between {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: white;
+    padding: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Chat Window Content */
+#chatWindow iframe {
+    flex: 1;
+    width: 100%;
+    height: calc(100% - 60px); /* Subtract header height */
+    border: none;
+    border-radius: 0;
+}
+
+/* Chat Input Container */
+.chat-input-container {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    background: white;
+    padding: 0.75rem;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Tablet Adjustments (768px and below) */
+@media (max-width: 768px) {
+    #chatWindow {
+        width: 90%;
+        max-width: 400px;
+        height: 80vh;
+        max-height: 500px;
+        margin: 0 auto;
+        bottom: 0;
+        transform: translateX(50%);
+    }
+
+    #chatWindow.active {
+        transform: translateX(50%);
+    }
+
+    .chat-input-container {
+        padding: 0.5rem;
+    }
+}
+
+/* Mobile Adjustments (480px and below) */
+@media (max-width: 480px) {
+    #chatWindow {
+        width: 85%;
+        max-width: 360px;
+        height: 75vh;
+        max-height: 450px;
+    }
+
+    .chat-input-container {
+        padding: 0.5rem;
+    }
+}
+
+/* Small Mobile Adjustments (360px and below) */
+@media (max-width: 360px) {
+    #chatWindow {
+        width: 80%;
+        max-width: 320px;
+        height: 70vh;
+        max-height: 400px;
+    }
+
+    .chat-input-container {
+        padding: 0.375rem;
+    }
+}
+
+/* iOS Specific Adjustments */
+@supports (-webkit-touch-callout: none) {
+    #chatWindow {
+        bottom: 0;
+    }
+
+    .chat-toggle-container {
+        bottom: 1.25rem;
+    }
+}
+
+/* Add a subtle pulse animation to draw attention */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(231, 175, 65, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(231, 175, 65, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(231, 175, 65, 0);
+    }
+}
+
+.chat-toggle-button {
+    animation: pulse 2s infinite;
+}
+
+/* Improve touch target size */
+.chat-toggle-button::before {
+    content: '';
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
+    bottom: -0.5rem;
+    left: -0.5rem;
 }
 
 /* Floating label styles */

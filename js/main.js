@@ -430,7 +430,7 @@ $(document).ready(function() {
     initializeCarousel();
     
     // ... rest of existing DOMContentLoaded code ...
-});
+}); 
 
 // About Us Toggle Functionality
 document.addEventListener('DOMContentLoaded', function() {

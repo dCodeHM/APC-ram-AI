@@ -499,38 +499,37 @@
 
         /* About RAMSEY Animations */
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         @keyframes fadeOut {
-            from {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            to {
-                opacity: 0;
-                transform: translateY(20px);
-            }
+            from { opacity: 1; transform: scale(1); }
+            to { opacity: 0; transform: scale(0.95); }
         }
 
-        #aboutRamseyContent {
-            animation: fadeIn 0.5s ease-out forwards;
-        }
+        @media (max-width: 768px) {
+            /* Disable animations and transitions for performance on mobile/tablet */
+            .animated-bg, .animated-bg::before, .animated-bg::after,
+            .floating-element, .floating-shape, .animate-gradient-x,
+            .loading-dot, #aboutRamseyContent, #aboutUsContent,
+            [class*="hover:"], [class*="group-hover:"] {
+                animation: none !important;
+                transition: none !important;
+            }
 
-        #aboutRamseyContent.hidden {
-            animation: fadeOut 0.5s ease-out forwards;
+            #chatWindow {
+                transition: none !important;
+            }
+
+            html {
+                scroll-behavior: auto !important;
+            }
         }
     </style>
 
 </head>
-<body class="bg-gradient-to-br from-blue-50 to-indigo-50"> 
+<body class="bg-gray-50 font-['Poppins']"> 
     <!-- Navigation -->
     <nav class="bg-white/100 backdrop-blur-md shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
@@ -1351,7 +1350,7 @@
                                     <img src="/image/pinlac.png" alt="Pinlac" loading="lazy">
                                 </div>
                                 <div class="team-member-info">
-                                    <h3><span class="font-bold text-[#e7af41]">Pinlac</span>, John Paul</h3>
+                                    <h3><span class="font-bold text-[#e7af41]">Pinlac</span>, Matthew Aaron</h3>
                                     <p>BS Computer Science - Software and Systems</p>
                                 </div>
                             </div>
@@ -1504,7 +1503,7 @@
                     <h4 class="text-xl font-semibold text-[#e7af41] border-b border-[#e7af41] pb-2 inline-block font-['Poppins'] tracking-wide">Quick Links</h4>
                     <ul class="space-y-3">
                         <li>
-                            <a href="#" class="group flex items-center text-gray-300 hover:text-blue-400 transition-colors">
+                            <a href="https://rams.apc.edu.ph/" class="group flex items-center text-gray-300 hover:text-blue-400 transition-colors">
                                 <i class="fas fa-chevron-right text-sm mr-2 text-[#e7af41] group-hover:translate-x-1 transition-transform"></i>
                                 RAMS Portal
                             </a>
@@ -1617,7 +1616,7 @@
                 e.preventDefault();
                 
                 // Scroll to the About Us section
-                aboutUsToggle.scrollIntoView({ behavior: 'smooth' });
+                aboutUsToggle.scrollIntoView({ behavior: window.innerWidth > 768 ? 'smooth' : 'auto' });
                 
                 // If the section is not already open, open it
                 if (!isAboutUsOpen) {
@@ -1632,7 +1631,7 @@
                 
                 // Scroll to the services section
                 document.getElementById('services').scrollIntoView({ 
-                    behavior: 'smooth',
+                    behavior: window.innerWidth > 768 ? 'smooth' : 'auto',
                     block: 'start'
                 });
             });
@@ -1753,7 +1752,7 @@
 
                         window.scrollTo({
                             top: offsetPosition,
-                            behavior: 'smooth'
+                            behavior: window.innerWidth > 768 ? 'smooth' : 'auto'
                         });
                     }
                 });
@@ -1838,10 +1837,12 @@
         }
 
         // Add smooth transitions to content
-        document.querySelectorAll('[id$="-content"]').forEach(content => {
-            content.style.transition = 'all 0.3s ease-in-out';
-            content.style.overflow = 'hidden';
-        });
+        if (window.innerWidth > 768) {
+            document.querySelectorAll('[id$="-content"]').forEach(content => {
+                content.style.transition = 'all 0.3s ease-in-out';
+                content.style.overflow = 'hidden';
+            });
+        }
 
         // About RAMSEY Toggle Functionality
         const aboutRamseyToggle = document.getElementById('aboutRamseyToggle');
